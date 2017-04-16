@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">GirlAtHome</string>
+    <string name="drawer_open">Menu opened</string>
+    <string name="drawer_close">Menu closed</string>
+    <string name="action_settings">Settings</string>
+    <string name="home">Home</string>
+    <string name="stylists">Stylists</string>
+    <string name="my_bookings">My Bookings</string>
+    <string name="favourites">Favourites</string>
+    <string name="virtual_makeover">Virtual Makeover</string>
+    <string name="account">My Account</string>
+    <string name="sign_join">Sign In | Join Free</string>
+    <string name="action_search">Search</string>
+    <string name="action_booking">Bookings</string>
+</resources>
