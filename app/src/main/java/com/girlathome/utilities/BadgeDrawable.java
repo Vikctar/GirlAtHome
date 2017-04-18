@@ -67,8 +67,8 @@ public class BadgeDrawable extends Drawable {
         float centerY = radius - 5;
         if (mCount.length() <= 2) {
             // Draw badge circle.
-            canvas.drawCircle(centerX, centerY, (int) (radius + 7.5), mBadgePaint1);
-            canvas.drawCircle(centerX, centerY, (int) (radius + 5.5), mBadgePaint);
+            canvas.drawCircle(centerX, centerY, (int) (radius + 5.5), mBadgePaint1);
+            canvas.drawCircle(centerX, centerY, (int) (radius + 3.5), mBadgePaint);
         } else {
             canvas.drawCircle(centerX, centerY, (int) (radius + 8.5), mBadgePaint1);
             canvas.drawCircle(centerX, centerY, (int) (radius + 6.5), mBadgePaint);

@@ -29,21 +29,34 @@
                     android:layout_width="@dimen/navigation_drawer_width"
                     android:layout_height="wrap_content"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/container_bg" />
+                    android:src="@drawable/container_bg_1" />
             </LinearLayout>
             <!--sign up button-->
-            <Button
+            <!--    <Button
+                    android:id="@+id/sign_join"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/prof_image"
+                    android:layout_marginLeft="14dp"
+                    android:background="@null"
+                    android:text="@string/sign_join"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />-->
+            <com.ctrlplusz.anytextview.AnyTextView
                 android:id="@+id/sign_join"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/prof_image"
-                android:layout_marginLeft="14dp"
-                android:background="@null"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:background="?android:attr/selectableItemBackground"
                 android:text="@string/sign_join"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                card_view:typeface="NirmalaB.ttf" />
             <!--profile image-->
             <com.pkmmte.view.CircularImageView
                 android:id="@+id/prof_image"

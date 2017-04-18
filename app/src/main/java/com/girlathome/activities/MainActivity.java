@@ -1,6 +1,7 @@
 package com.girlathome.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -98,14 +99,17 @@ public class MainActivity extends AppCompatActivity
                 toolbar_text.setText(title);
                 break;
             case 5:
-                fragment = new AccountFragment();
+               /* fragment = new AccountFragment();*/
+                startActivity(new Intent(getApplicationContext(), LoginOrSignUp.class));
                 title = getString(R.string.account);
                 toolbar_text.setText(title);
                 break;
 
         }
         Toast.makeText(this, activity_started + title + " selected -> " + position, Toast.LENGTH_SHORT).show();
-        createFragments(fragment, title);
+        if (position != 5) {
+            createFragments(fragment, title);
+        }
     }
 
     private void createFragments(Fragment fragment, String title) {

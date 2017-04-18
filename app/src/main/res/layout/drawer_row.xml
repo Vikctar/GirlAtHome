@@ -32,7 +32,7 @@
             android:text="Text"
             android:textColor="@color/colorPrimaryLight"
             android:textSize="18sp"
-            app:typeface="Centurygothic.ttf" />
+            app:typeface="Nirmala.ttf" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -11,6 +11,10 @@
     <color name="white">#fff</color>
     <color name="black">#000</color>
     <color name="green_color">#28CC9E</color>
+    <color name="grey_light">#e9e8e8</color>
+    <color name="dark_teal">#3B4A45</color>
+    <color name="grey_light_darker">#CCC</color>
+    <color name="dark_red">#9E3E42</color>
 
     <drawable name="pressed_gray">#0c000000</drawable>
     <drawable name="selected_gray">#2c000000</drawable>

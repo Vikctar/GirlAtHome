@@ -10,21 +10,24 @@ import android.view.ViewGroup;
 
 import com.girlathome.R;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 
 /**
- * Created by steve on 4/16/17.
+ * Created by steve on 4/18/17.
  */
-public class AccountFragment extends Fragment {
-    private static final String TAG = AccountFragment.class.getSimpleName();
+public class RegisterFragment extends Fragment {
+    private static final String TAG = RegisterFragment.class.getSimpleName();
     Activity parentActivity;
 
 
-    public AccountFragment() {
+    public RegisterFragment() {
     }
 
 
-    public static AccountFragment newInstance() {
-        AccountFragment fragment = new AccountFragment();
+    public static RegisterFragment newInstance() {
+        RegisterFragment fragment = new RegisterFragment();
         return fragment;
     }
 
@@ -43,10 +46,19 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: hit");
-        View rootView = inflater.inflate(R.layout.account_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.register_fragment, container, false);
+        ButterKnife.bind(this, rootView);
         return rootView;
     }
 
+    @OnClick(R.id.close_frag)
+    void closeActivity() {
+        parentActivity.finish();
+    }
+
+    @OnClick(R.id.register)
+    public void login() {
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
