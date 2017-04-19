@@ -84,21 +84,27 @@ public class MainActivity extends AppCompatActivity
                 toolbar_text.setText(title);
                 break;
             case 2:
+                fragment = new GalleryFragment();
+                title = getString(R.string.gallery);
+                toolbar_text.setText(title);
+
+                break;
+            case 3:
                 fragment = new BookingsFragment();
                 title = getString(R.string.my_bookings);
                 toolbar_text.setText(title);
                 break;
-            case 3:
+            case 4:
                 fragment = new FavouritesFragment();
                 title = getString(R.string.favourites);
                 toolbar_text.setText(title);
                 break;
-            case 4:
+            case 5:
                 fragment = new VirtualMakeOverFragment();
                 title = getString(R.string.virtual_makeover);
                 toolbar_text.setText(title);
                 break;
-            case 5:
+            case 6:
                /* fragment = new AccountFragment();*/
                 startActivity(new Intent(getApplicationContext(), LoginOrSignUp.class));
                 title = getString(R.string.account);
