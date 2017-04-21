@@ -48,6 +48,7 @@ public class StyleFormDetailsFragment extends Fragment {
         Log.d(TAG, "onCreateView: hit");
         View rootView = inflater.inflate(R.layout.style_form_details_fragment, container, false);
         ButterKnife.bind(this, rootView);
+        ((AddNew)parentActivity).setUpTitle(getString(R.string.style_details));
         return rootView;
     }
 

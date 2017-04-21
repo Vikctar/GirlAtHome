@@ -59,4 +59,10 @@
     <string name="crop_image_menu_crop">Done</string>
     <string name="pick_image_intent_chooser_title">Pick Image</string>
     <string name="done">Done</string>
+    <string name="style_category">Style Category</string>
+    <string name="style_details">Style Details</string>
+    <string name="more_details">More Details</string>
+    <string name="add_images">Add Images</string>
+    <string name="list_item">List Your Item</string>
+    <string name="about_style">About your style</string>
 </resources>

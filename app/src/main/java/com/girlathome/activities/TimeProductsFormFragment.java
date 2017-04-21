@@ -50,6 +50,7 @@ public class TimeProductsFormFragment extends Fragment {
         Log.d(TAG, "onCreateView: hit");
         View rootView = inflater.inflate(R.layout.time_products_form_fragment, container, false);
         ButterKnife.bind(this, rootView);
+        ((AddNew)parentActivity).setUpTitle(getString(R.string.more_details));
         return rootView;
     }
 

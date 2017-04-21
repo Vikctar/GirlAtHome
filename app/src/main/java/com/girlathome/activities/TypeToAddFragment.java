@@ -47,11 +47,20 @@ public class TypeToAddFragment extends Fragment {
         Log.d(TAG, "onCreateView: hit");
         View rootView = inflater.inflate(R.layout.type_to_add_fragment, container, false);
         ButterKnife.bind(this, rootView);
+        ((AddNew) parentActivity).setUpTitle(getString(R.string.list_item));
+
         return rootView;
     }
 
     @OnClick(R.id.style_layout)
     void styleClicked() {
+        ((AddNew) parentActivity).setTypeOfItem("style");
+        ((AddNew) parentActivity).createFragments(new TypeOfStyleFragment());
+    }
+
+    @OnClick(R.id.product_layout)
+    void productClicked() {
+        ((AddNew) parentActivity).setTypeOfItem("product");
         ((AddNew) parentActivity).createFragments(new TypeOfStyleFragment());
     }
 

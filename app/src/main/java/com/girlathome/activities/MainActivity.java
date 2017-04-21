@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity
             case 7:
                /* fragment = new AccountFragment();*/
                 startActivity(new Intent(getApplicationContext(), LoginOrSignUp.class));
-                title = getString(R.string.account);
+                title = getString(R.string.home);
                 toolbar_text.setText(title);
                 break;
 

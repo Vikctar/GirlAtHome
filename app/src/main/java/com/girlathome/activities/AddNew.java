@@ -19,6 +19,7 @@ public class AddNew extends AppCompatActivity {
     FragmentTransaction fragmentTransaction;
     Toolbar toolbar;
     TextView toolbar_text;
+    String item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class AddNew extends AppCompatActivity {
         ButterKnife.bind(this);
         setUpViews();
         setUpToolBar();
-        setUpTitle("List Your Item");
+        setUpTitle(getString(R.string.list_item));
     }
 
     private void setUpToolBar() {
@@ -61,10 +62,23 @@ public class AddNew extends AppCompatActivity {
     public void onBackPressed() {
         int fragments = getSupportFragmentManager().getBackStackEntryCount();
         if (fragments == 1) {
+            setUpTitle(getString(R.string.list_item));
             finish();
+        } else if (fragments == 2) {
+            setUpTitle(getString(R.string.style_category));
+        } else if (fragments == 3) {
+            setUpTitle(getString(R.string.style_details));
+        } else if (fragments == 4) {
+            setUpTitle(getString(R.string.more_details));
+        } else if (fragments == 5) {
+            setUpTitle(getString(R.string.add_images));
         }
         Log.d("no_of_frga", fragments + "");
         super.onBackPressed();
+    }
+
+    public void setTypeOfItem(String item) {
+        this.item = item;
     }
 
     @Override

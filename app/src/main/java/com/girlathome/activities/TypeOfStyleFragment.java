@@ -52,6 +52,7 @@ public class TypeOfStyleFragment extends Fragment {
     }
 
     private void setViews() {
+        ((AddNew)parentActivity).setUpTitle(getString(R.string.style_category));
     }
 
     @OnClick(R.id.hair_layout)
