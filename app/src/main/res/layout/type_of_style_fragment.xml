@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_light"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="30dp">
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/what_style_category"
+            android:textColor="@color/grey_2"
+            android:textSize="22sp"
+            app:typeface="NirmalaB.ttf" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_light_darker" />
+        <!--hair-->
+        <RelativeLayout
+            android:id="@+id/hair_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:paddingBottom="7dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="7dp">
+
+            <ImageView
+                android:id="@+id/hair_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_style" />
+
+            <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/hair_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/hair_icon"
+                android:text="@string/hair_style"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+                app:typeface="Nirmala.ttf" />
+
+            <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/hair_sub_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/hair_title"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/hair_icon"
+                android:text="@string/hair_style_subtext"
+                android:textColor="@color/grey_2"
+                android:textSize="15sp"
+                app:typeface="Nirmala.ttf" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_light_darker"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp" />
+        <!--manicure-->
+        <RelativeLayout
+            android:id="@+id/manicure_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:paddingBottom="7dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="7dp">
+
+            <ImageView
+                android:id="@+id/manicure_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_manicure" />
+
+            <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/manicure_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/manicure_icon"
+                android:text="@string/manicure_style"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+                app:typeface="Nirmala.ttf" />
+
+            <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/manicure_sub_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/manicure_title"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/manicure_icon"
+                android:text="@string/manicure_style_subtext"
+                android:textColor="@color/grey_2"
+                android:textSize="15sp"
+                app:typeface="Nirmala.ttf" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_light_darker" />
+        <!--pedicure-->
+        <RelativeLayout
+            android:id="@+id/pedicure_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:paddingBottom="7dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="7dp">
+
+            <ImageView
+                android:id="@+id/pedicure_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_pedicure" />
+
+            <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/pedicure_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/pedicure_icon"
+                android:text="@string/pedicure_style"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+                app:typeface="Nirmala.ttf" />
+
+            <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/pedicure_sub_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pedicure_title"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/pedicure_icon"
+                android:text="@string/pedicure_style_subtext"
+                android:textColor="@color/grey_2"
+                android:textSize="15sp"
+                app:typeface="Nirmala.ttf" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_light_darker" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/more_styles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="@string/more"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            app:typeface="Nirmala.ttf" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@+id/more_styles"
+            android:src="@drawable/ic_dropdown_purple" />
+    </RelativeLayout>
+</LinearLayout>

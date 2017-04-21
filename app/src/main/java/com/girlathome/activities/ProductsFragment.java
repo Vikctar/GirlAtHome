@@ -1,33 +1,30 @@
 package com.girlathome.activities;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.app.Activity;
 
 import com.girlathome.R;
 
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 
 /**
- * Created by steve on 4/16/17.
+ * Created by steve on 4/20/17.
  */
-public class HomeFragment extends Fragment {
-    private static final String TAG = HomeFragment.class.getSimpleName();
+public class ProductsFragment extends Fragment {
     Activity parentActivity;
+    private static final String TAG = ProductsFragment.class.getSimpleName();
 
-    public HomeFragment() {
+
+    public ProductsFragment() {
     }
 
 
-    public static HomeFragment newInstance() {
-        HomeFragment fragment = new HomeFragment();
+    public static ProductsFragment newInstance() {
+        ProductsFragment fragment = new ProductsFragment();
         return fragment;
     }
 
@@ -46,15 +43,10 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: hit");
-        View rootView = inflater.inflate(R.layout.home_fragment, container, false);
-        ButterKnife.bind(this, rootView);
+        View rootView = inflater.inflate(R.layout.products_fragment, container, false);
         return rootView;
     }
 
-    @OnClick(R.id.fab)
-    void open() {
-        startActivity(new Intent(parentActivity, AddNew.class));
-    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity
         // Set up the drawer.
         mNavigationDrawerFragment.setup(R.id.fragment_drawer, (DrawerLayout) findViewById(R.id.drawer), toolbar);
 
+
     }
 
     private void setUpToolBar(String title) {
@@ -79,32 +80,37 @@ public class MainActivity extends AppCompatActivity
                 activity_started = false;
                 break;
             case 1:
-                fragment = new StylistsFragment();
-                title = getString(R.string.stylists);
-                toolbar_text.setText(title);
-                break;
-            case 2:
                 fragment = new GalleryFragment();
                 title = getString(R.string.gallery);
                 toolbar_text.setText(title);
 
                 break;
+            case 2:
+                fragment = new StylistsFragment();
+                title = getString(R.string.stylists);
+                toolbar_text.setText(title);
+                break;
             case 3:
+                fragment = new ProductsFragment();
+                title = getString(R.string.products);
+                toolbar_text.setText(title);
+                break;
+            case 4:
                 fragment = new BookingsFragment();
                 title = getString(R.string.my_bookings);
                 toolbar_text.setText(title);
                 break;
-            case 4:
+            case 5:
                 fragment = new FavouritesFragment();
                 title = getString(R.string.favourites);
                 toolbar_text.setText(title);
                 break;
-            case 5:
+            case 6:
                 fragment = new VirtualMakeOverFragment();
                 title = getString(R.string.virtual_makeover);
                 toolbar_text.setText(title);
                 break;
-            case 6:
+            case 7:
                /* fragment = new AccountFragment();*/
                 startActivity(new Intent(getApplicationContext(), LoginOrSignUp.class));
                 title = getString(R.string.account);
@@ -113,7 +119,7 @@ public class MainActivity extends AppCompatActivity
 
         }
         Toast.makeText(this, activity_started + title + " selected -> " + position, Toast.LENGTH_SHORT).show();
-        if (position != 5) {
+        if (position != 7) {
             createFragments(fragment, title);
         }
     }

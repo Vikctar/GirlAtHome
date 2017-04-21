@@ -61,7 +61,7 @@ public class LoginOrSignUpFragment extends Fragment {
 
     @OnClick(R.id.close_frag)
     void closeActivity() {
-        parentActivity.finish();
+        parentActivity.onBackPressed();
     }
 
     @OnClick(R.id.login)

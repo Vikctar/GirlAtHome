@@ -52,8 +52,9 @@ public class RegisterFragment extends Fragment {
     }
 
     @OnClick(R.id.close_frag)
-    void closeActivity() {
-        parentActivity.finish();
+    void goBack() {
+//        parentActivity.finish();
+        parentActivity.onBackPressed();
     }
 
     @OnClick(R.id.register)

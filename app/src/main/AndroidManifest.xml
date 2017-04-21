@@ -27,6 +27,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.LoginOrSignUp" />
+        <activity android:name=".activities.AddNew" />
+        <!-- ImagePicker 相关配置 -->
+        <activity android:name=".utilities.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/>
     </application>
 
 </manifest>

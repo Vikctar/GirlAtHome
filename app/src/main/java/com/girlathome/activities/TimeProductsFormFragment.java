@@ -1,7 +1,6 @@
 package com.girlathome.activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,27 +15,30 @@ import butterknife.OnClick;
 
 
 /**
- * Created by steve on 4/16/17.
+ * Created by steve on 4/20/17.
  */
-public class HomeFragment extends Fragment {
-    private static final String TAG = HomeFragment.class.getSimpleName();
+public class TimeProductsFormFragment extends Fragment {
+    private static final String TAG = TimeProductsFormFragment.class.getSimpleName();
     Activity parentActivity;
 
-    public HomeFragment() {
+    {
     }
 
 
-    public static HomeFragment newInstance() {
-        HomeFragment fragment = new HomeFragment();
+    public TimeProductsFormFragment() {
+    }
+
+    public static TimeProductsFormFragment newInstance() {
+        TimeProductsFormFragment fragment = new TimeProductsFormFragment();
         return fragment;
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: hit");
         super.onCreate(savedInstanceState);
     }
+
 
     /**
      * Change the null parameter in {@code inflater.inflate()}
@@ -46,15 +48,11 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: hit");
-        View rootView = inflater.inflate(R.layout.home_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.time_products_form_fragment, container, false);
         ButterKnife.bind(this, rootView);
         return rootView;
     }
 
-    @OnClick(R.id.fab)
-    void open() {
-        startActivity(new Intent(parentActivity, AddNew.class));
-    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -62,6 +60,10 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
+    @OnClick(R.id.continue_btn)
+    void continue_() {
+        ((AddNew) parentActivity).createFragments(new StyleUploadImagesFragment());
+    }
 
     @Override
     public void onResume() {

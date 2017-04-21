@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.girlathome.R;
 
@@ -26,6 +27,16 @@ public class LoginOrSignUp extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        int fragments = getSupportFragmentManager().getBackStackEntryCount();
+        if (fragments == 1) {
+            finish();
+        }
+        Log.d("no_of_frga", fragments + "");
+        super.onBackPressed();
     }
 
 }

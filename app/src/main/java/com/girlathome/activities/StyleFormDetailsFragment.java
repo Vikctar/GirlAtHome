@@ -1,7 +1,6 @@
 package com.girlathome.activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,18 +15,19 @@ import butterknife.OnClick;
 
 
 /**
- * Created by steve on 4/16/17.
+ * Created by steve on 4/20/17.
  */
-public class HomeFragment extends Fragment {
-    private static final String TAG = HomeFragment.class.getSimpleName();
+public class StyleFormDetailsFragment extends Fragment {
+    private static final String TAG = StyleFormDetailsFragment.class.getSimpleName();
     Activity parentActivity;
 
-    public HomeFragment() {
+
+    public StyleFormDetailsFragment() {
     }
 
 
-    public static HomeFragment newInstance() {
-        HomeFragment fragment = new HomeFragment();
+    public static StyleFormDetailsFragment newInstance() {
+        StyleFormDetailsFragment fragment = new StyleFormDetailsFragment();
         return fragment;
     }
 
@@ -46,14 +46,14 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: hit");
-        View rootView = inflater.inflate(R.layout.home_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.style_form_details_fragment, container, false);
         ButterKnife.bind(this, rootView);
         return rootView;
     }
 
-    @OnClick(R.id.fab)
-    void open() {
-        startActivity(new Intent(parentActivity, AddNew.class));
+    @OnClick(R.id.continue_btn)
+    void continueClicked() {
+        ((AddNew) parentActivity).createFragments(new TimeProductsFormFragment());
     }
 
     @Override

@@ -15,6 +15,8 @@
     <color name="dark_teal">#3B4A45</color>
     <color name="grey_light_darker">#CCC</color>
     <color name="dark_red">#9E3E42</color>
+    <color name="grey">#646363</color>
+    <color name="grey_2">#9b9b9b</color>
 
     <drawable name="pressed_gray">#0c000000</drawable>
     <drawable name="selected_gray">#2c000000</drawable>
