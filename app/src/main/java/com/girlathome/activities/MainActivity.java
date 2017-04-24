@@ -11,14 +11,19 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.girlathome.R;
+import com.girlathome.utilities.AccountSharedPreferences;
 import com.girlathome.utilities.BadgeDrawable;
 import com.girlathome.utilities.NavigationDrawerCallbacks;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import butterknife.ButterKnife;
 
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity
     Toolbar toolbar;
     TextView toolbar_text;
     boolean activity_started = true;
+    AccountSharedPreferences accountSharedPreferences;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -48,7 +54,8 @@ public class MainActivity extends AppCompatActivity
                 getFragmentManager().findFragmentById(R.id.fragment_drawer);
         // Set up the drawer.
         mNavigationDrawerFragment.setup(R.id.fragment_drawer, (DrawerLayout) findViewById(R.id.drawer), toolbar);
-
+        mNavigationDrawerFragment.closeDrawer();
+        accountSharedPreferences = new AccountSharedPreferences(this);
 
     }
 
@@ -62,7 +69,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setUpViews() {
-
+        locationsRequest("locations/counties", "counties");
+        locationsRequest("locations/all", "location");
     }
 
     @Override
@@ -189,6 +197,44 @@ public class MainActivity extends AppCompatActivity
         }.start();
 
 
+    }
+
+    public void locationsRequest(String url, final String variant) {
+        /*final BackgroundNetworkRequest backgroundNetworkRequest = new BackgroundNetworkRequest();
+        if (!backgroundNetworkRequest.makeRequest(this, "locations/counties").equals("error")) {
+            new Thread() {
+                public void run() {
+                    accountSharedPreferences.setCountyList(backgroundNetworkRequest.makeRequest(MainActivity.this, "locations/counties"));
+                }
+            };
+        }*/
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        client.get(getResources().getString(R.string.base_url) + url, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onStart() {
+                Log.d("backgrnd_req", "started");
+            }
+
+            @Override
+            public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
+                String s = new String(responseBody);
+                Log.d("backgrnd_req", s);
+                System.out.print(s);
+                if (variant.equals("counties")) {
+                    accountSharedPreferences.setCountyList(s);
+                } else {
+                    accountSharedPreferences.setLocationList(s);
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody, Throwable error) {
+//                displayRetry();
+                Log.d("backgrnd_req", statusCode + "");
+
+            }
+        });
     }
 
     @Override

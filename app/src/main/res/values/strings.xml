@@ -65,4 +65,11 @@
     <string name="add_images">Add Images</string>
     <string name="list_item">List Your Item</string>
     <string name="about_style">About your style</string>
+    <string name="base_url">http://smoothvalley.com/gl/public/v1/</string>
+    <string name="location">Location</string>
+    <string name="what_county">What county are you in?</string>
+    <string name="name_of_county">Pick your county</string>
+    <string name="county">County</string>
+    <string name="location_label">Select a location closest to you</string>
+    <string name="set_location">Set Location</string>
 </resources>

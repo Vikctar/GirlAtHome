@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.girlathome.R;
+import com.girlathome.utilities.AccountSharedPreferences;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -21,6 +22,7 @@ import butterknife.OnClick;
 public class HomeFragment extends Fragment {
     private static final String TAG = HomeFragment.class.getSimpleName();
     Activity parentActivity;
+    AccountSharedPreferences asp;
 
     public HomeFragment() {
     }
@@ -48,12 +50,17 @@ public class HomeFragment extends Fragment {
         Log.d(TAG, "onCreateView: hit");
         View rootView = inflater.inflate(R.layout.home_fragment, container, false);
         ButterKnife.bind(this, rootView);
+        asp = new AccountSharedPreferences(parentActivity);
         return rootView;
     }
 
     @OnClick(R.id.fab)
     void open() {
-        startActivity(new Intent(parentActivity, AddNew.class));
+        if (asp.getCounty().equals("")) {
+            startActivity(new Intent(parentActivity, LocationActivity.class));
+        } else {
+            startActivity(new Intent(parentActivity, AddNew.class));
+        }
     }
 
     @Override

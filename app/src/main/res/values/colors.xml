@@ -12,6 +12,7 @@
     <color name="black">#000</color>
     <color name="green_color">#28CC9E</color>
     <color name="grey_light">#e9e8e8</color>
+    <color name="grey_lighter">#efefef</color>
     <color name="dark_teal">#3B4A45</color>
     <color name="grey_light_darker">#CCC</color>
     <color name="dark_red">#9E3E42</color>
