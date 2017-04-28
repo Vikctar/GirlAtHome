@@ -32,7 +32,8 @@
         <activity
             android:name=".utilities.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".activities.LocationActivity"></activity>
+        <activity android:name=".activities.LocationActivity" />
+        <activity android:name=".activities.SettingsActivity"></activity>
     </application>
 
 </manifest>
