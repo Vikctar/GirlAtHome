@@ -1,7 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_light"
     android:orientation="vertical">
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:id="@+id/profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="20dp">
+                <!--profile image-->
+                <com.pkmmte.view.CircularImageView
+                    android:id="@+id/prof_image"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="20dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_person"
+                    app:border="true"
+                    app:border_color="@color/white"
+                    app:border_width="4dp" />
+
+                <com.ctrlplusz.anytextview.AnyTextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/prof_image"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:text="Steve Kamau"
+                    android:textAllCaps="false"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    app:typeface="NirmalaB.ttf" />
+            </RelativeLayout>
+
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/profile"
+                android:background="@color/grey_light_darker" />
+
+            <!--android:background="?android:attr/selectableItemBackground"-->
+            <!--view profile-->
+            <RelativeLayout
+                android:id="@+id/profile_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view1"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="10dp">
+
+                <com.ctrlplusz.anytextview.AnyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal"
+                    android:clickable="true"
+                    android:text="@string/view_profile"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:typeface="Nirmala.ttf" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_profile_black" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/profile_layout"
+                android:background="@color/grey_light_darker" />
+            <!--settings-->
+            <RelativeLayout
+                android:id="@+id/settings_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view2"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="10dp">
+
+                <com.ctrlplusz.anytextview.AnyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal"
+                    android:clickable="true"
+                    android:text="@string/action_settings"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:typeface="Nirmala.ttf" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_settings_blac" />
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/settings_layout"
+                android:background="@color/grey_light_darker" />
+
+            <View
+                android:id="@+id/view7"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/view3"
+                android:background="@color/grey_light" />
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/view7"
+                android:background="@color/grey_light_darker" />
+            <!--logout-->
+            <RelativeLayout
+                android:id="@+id/logout_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/view4"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="10dp">
+
+                <com.ctrlplusz.anytextview.AnyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal"
+                    android:clickable="true"
+                    android:text="@string/log_out"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:typeface="Nirmala.ttf" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_logout" />
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/view5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/logout_layout"
+                android:background="@color/grey_light_darker" />
+
+            <!--<View
+                android:id="@+id/view8"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/view5"
+                android:background="@color/grey_light" />-->
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</ScrollView>

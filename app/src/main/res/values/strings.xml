@@ -72,4 +72,6 @@
     <string name="county">County</string>
     <string name="location_label">Select a location closest to you</string>
     <string name="set_location">Set Location</string>
+    <string name="view_profile">View Profile</string>
+    <string name="log_out">Log Out</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.girlathome.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.girlathome.R;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
@@ -44,9 +48,14 @@ public class AccountFragment extends Fragment {
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: hit");
         View rootView = inflater.inflate(R.layout.account_fragment, container, false);
+        ButterKnife.bind(this, rootView);
         return rootView;
     }
 
+    @OnClick(R.id.settings_layout)
+    void settings() {
+        startActivity(new Intent(parentActivity, SettingsActivity.class));
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
