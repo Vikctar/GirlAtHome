@@ -39,5 +39,5 @@ dependencies {
     compile 'com.pkmmte.view:circularimageview:1.1'
     compile 'com.tuyenmonkey:mkloader:1.2.0'
     testCompile 'junit:junit:4.12'
-    compile files('/home/steve/MyStuff/Development/Projects/Android/Current/GirlAtHome/libs/jsoup-1.10.2.jar')
+    compile files('libs/jsoup-1.10.2.jar')
 }
