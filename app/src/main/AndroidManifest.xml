@@ -33,7 +33,8 @@
             android:name=".utilities.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".activities.LocationActivity" />
-        <activity android:name=".activities.SettingsActivity"></activity>
+        <activity android:name=".activities.SettingsActivity" />
+        <activity android:name=".activities.StylistDetails"></activity>
     </application>
 
 </manifest>

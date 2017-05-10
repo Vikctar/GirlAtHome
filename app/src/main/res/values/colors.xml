@@ -18,6 +18,9 @@
     <color name="dark_red">#9E3E42</color>
     <color name="grey">#646363</color>
     <color name="grey_2">#9b9b9b</color>
+    <color name="darkAccent">#414141</color>
+    <color name="mauvre">#F56954</color>
+    <color name="dark_grey">#585757</color>
 
     <drawable name="pressed_gray">#0c000000</drawable>
     <drawable name="selected_gray">#2c000000</drawable>

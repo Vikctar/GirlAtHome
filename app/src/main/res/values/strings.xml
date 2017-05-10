@@ -74,4 +74,10 @@
     <string name="set_location">Set Location</string>
     <string name="view_profile">View Profile</string>
     <string name="log_out">Log Out</string>
+    <string name="stylists_around">Stylists around</string>
+    <string name="apply">Book</string>
+    <string name="book_me">Book Me</string>
+    <string name="working_hours">Working Hours</string>
+    <string name="action_share">Share</string>
+    <string name="member_since">Member since</string>
 </resources>

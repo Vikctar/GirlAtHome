@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:typeface="NirmalaB.ttf" />
+
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="15dp"
+        android:text="Mombasa, Mombasa"
+        android:textColor="@color/darkAccent"
+        android:textSize="18sp"
+        app:typeface="Nirmala.ttf" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/grey_lighter" />
+
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/member_since"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Member since January 2016"
+        android:textColor="@color/darkAccent"
+        android:textSize="18sp"
+        app:typeface="Nirmala.ttf" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/grey_lighter" />
+    <!--reviews-->
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/reviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="190 reviews"
+        android:textColor="@color/darkAccent"
+        android:textSize="18sp"
+        app:typeface="Nirmala.ttf" />
+
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/see_all_reviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="See all reviews >"
+        android:textColor="@color/green_color"
+        android:textSize="18sp"
+        app:typeface="Nirmala.ttf" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/grey_lighter" />
+    <!--working hours-->
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/working_hours"
+        android:textColor="@color/darkAccent"
+        android:textSize="20sp"
+        app:typeface="NirmalaB.ttf" />
+
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/weekdays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Weekdays from 8.00 am to 6.00 pm"
+        android:textColor="@color/darkAccent"
+        android:textSize="18sp"
+        app:typeface="Nirmala.ttf" />
+
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/weekends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Weekends from 1.00 pm to 6.00 pm"
+        android:textColor="@color/darkAccent"
+        android:textSize="18sp"
+        app:typeface="Nirmala.ttf" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/grey_lighter" />
+    <!--styles-->
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/styles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="12 styles"
+        android:textColor="@color/darkAccent"
+        android:textSize="18sp"
+        app:typeface="Nirmala.ttf" />
+</LinearLayout>

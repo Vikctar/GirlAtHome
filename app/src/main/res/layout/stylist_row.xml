@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="7dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/image_placeholder" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:paddingEnd="5dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="5dp"
+        android:paddingStart="2dp"
+        android:paddingTop="2dp">
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:typeface="Nirmala.ttf" />
+
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/location"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="Mombasa"
+            android:textColor="@color/darkAccent"
+            android:textSize="14sp"
+            app:typeface="Nirmala.ttf" />
+
+        <RatingBar
+            android:id="@+id/ratingbar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/location"
+            android:layout_margin="-3dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="4"
+            android:stepSize="1"
+            android:theme="@style/RatingBar" />
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/review_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/location"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/ratingbar"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="10 reviews"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            app:typeface="Nirmala.ttf" />
+    </RelativeLayout>
+</LinearLayout>
