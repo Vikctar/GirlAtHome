@@ -70,7 +70,7 @@
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <Button
-        android:id="@+id/apply"
+        android:id="@+id/book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

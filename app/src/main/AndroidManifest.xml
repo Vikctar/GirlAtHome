@@ -34,7 +34,8 @@
             android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".activities.LocationActivity" />
         <activity android:name=".activities.SettingsActivity" />
-        <activity android:name=".activities.StylistDetails"></activity>
+        <activity android:name=".activities.StylistDetails" />
+        <activity android:name=".activities.BookingActivity"></activity>
     </application>
 
 </manifest>

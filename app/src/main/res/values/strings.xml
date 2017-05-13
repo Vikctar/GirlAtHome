@@ -80,4 +80,18 @@
     <string name="working_hours">Working Hours</string>
     <string name="action_share">Share</string>
     <string name="member_since">Member since</string>
+    <string name="pick_a_date">Pick a day</string>
+    <string name="sun">SUN</string>
+    <string name="mon">MON</string>
+    <string name="tue">TUE</string>
+    <string name="wed">WED</string>
+    <string name="thu">THU</string>
+    <string name="fri">FRI</string>
+    <string name="sat">SAT</string>
+    <string name="current_date">June, 2016</string>
+    <string name="last_date">30</string>
+    <string name="what_day">What date would you like to book?</string>
+    <string name="AM">AM</string>
+    <string name="pm">PM</string>
+    <string name="what_time">What time of day do you want?</string>
 </resources>

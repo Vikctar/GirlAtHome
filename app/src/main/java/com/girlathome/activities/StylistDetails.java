@@ -23,6 +23,7 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class StylistDetails extends BaseActivity implements ObservableScrollViewCallbacks {
     @BindView(R.id.toolbar)
@@ -73,6 +74,10 @@ public class StylistDetails extends BaseActivity implements ObservableScrollView
         format = new SimpleDateFormat("MMM dd,yyyy hh:mm a");
         String date = format.format(newDate);
         return date;
+    }
+    @OnClick(R.id.book)
+    void book(){
+        startActivity(new Intent(getApplicationContext(),BookingActivity.class));
     }
 
     @Override
