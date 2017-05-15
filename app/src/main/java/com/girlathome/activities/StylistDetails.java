@@ -1,5 +1,7 @@
 package com.girlathome.activities;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -33,6 +35,7 @@ public class StylistDetails extends BaseActivity implements ObservableScrollView
     @BindView(R.id.member_since)
     TextView tvMemberSince;
     StylistModel stylistModel;
+    FragmentTransaction fragmentTransaction;
     private View mImageView;
     private View mToolbarView;
     private ObservableScrollView mScrollView;
@@ -64,6 +67,7 @@ public class StylistDetails extends BaseActivity implements ObservableScrollView
 
         tvName.setText(stylistModel.getName());
 //        tvMemberSince.setText(getString(R.string.member_since) + " " + stylistModel.getCreated_at());
+        createFragments(new EmptyFragment());
     }
 
     String getMemberSinceData(String dataString) throws ParseException {
@@ -75,10 +79,31 @@ public class StylistDetails extends BaseActivity implements ObservableScrollView
         String date = format.format(newDate);
         return date;
     }
+
     @OnClick(R.id.book)
-    void book(){
-        startActivity(new Intent(getApplicationContext(),BookingActivity.class));
+    void book() {
+        startActivity(new Intent(getApplicationContext(), BookingActivity.class));
     }
+
+    @OnClick(R.id.view_on_map)
+    void openMap() {
+//        createFragments(new MapFragment());
+        startActivity(new Intent(getApplicationContext(), MapActivity.class));
+    }
+
+
+    public void createFragments(Fragment fragment) {
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.animator.slide_up,
+                R.animator.slide_down,
+                R.animator.slide_up,
+                R.animator.slide_down);
+        fragmentTransaction.replace(R.id.container_body, fragment);
+        //fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

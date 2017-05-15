@@ -94,4 +94,7 @@
     <string name="AM">AM</string>
     <string name="pm">PM</string>
     <string name="what_time">What time of day do you want?</string>
+    <string name="pick_a_time">Time of day</string>
+    <string name="confirm_booking">Confrim Booking</string>
+    <string name="see_all"><![CDATA[See all >]]></string>
 </resources>

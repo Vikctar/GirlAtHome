@@ -9,7 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.girlathome.R;
-import com.girlathome.activities.TimeFragment;
 
 import java.util.List;
 
@@ -17,18 +16,21 @@ import java.util.List;
  * Created by steve on 5/13/17.
  */
 
-public class PMTimeAdapter
-        extends BaseAdapter {
+public class PMTimeAdapter extends BaseAdapter {
 
     String daytime_variant, hour_variant;
     private Activity mActivity;
     private List<String> mData;
 
-    public PMTimeAdapter(Activity a, List<String> mData, String daytime_variant, String hour_variant) {
+    private ListAdapterListener mListener;
+
+
+    public PMTimeAdapter(Activity a, List<String> mData, String daytime_variant, String hour_variant, ListAdapterListener mListener) {
         mActivity = a;
         this.mData = mData;
         this.daytime_variant = daytime_variant;
         this.hour_variant = hour_variant;
+        this.mListener = mListener;
     }
 
     public int getCount() {
@@ -73,7 +75,7 @@ public class PMTimeAdapter
                         @Override
                         public void onClick(View view) {
                             Log.d("is_it_time", "Clicked " + mData.get(position) + daytime_variant);
-                            Toast.makeText(mActivity, "Clicked " + mData.get(position) + " " + daytime_variant, Toast.LENGTH_LONG).show();
+                            mListener.onPMClick(position, mData.get(position), daytime_variant);
                         }
                     });
                 }
@@ -82,6 +84,10 @@ public class PMTimeAdapter
         }
 
         return convertView;
+    }
+
+    public interface ListAdapterListener { // create an interface
+        void onPMClick(int position, String s, String daytime_variant); // create callback function
     }
 
     class ViewHolder {

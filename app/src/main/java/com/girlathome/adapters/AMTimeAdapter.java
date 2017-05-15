@@ -1,7 +1,6 @@
 package com.girlathome.adapters;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -20,12 +19,14 @@ public class AMTimeAdapter extends BaseAdapter {
     String daytime_variant, hour_variant;
     private Activity mActivity;
     private List<String> mData;
+    private ListAdapterListener mListener;
 
-    public AMTimeAdapter(Activity a, List<String> mData, String daytime_variant, String hour_variant) {
+    public AMTimeAdapter(Activity a, List<String> mData, String daytime_variant, String hour_variant, ListAdapterListener mListener) {
         mActivity = a;
         this.mData = mData;
         this.daytime_variant = daytime_variant;
         this.hour_variant = hour_variant;
+        this.mListener = mListener;
     }
 
     public int getCount() {
@@ -71,7 +72,8 @@ public class AMTimeAdapter extends BaseAdapter {
                     holder.text.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Toast.makeText(mActivity, "Clicked " + mData.get(position) + " " + daytime_variant, Toast.LENGTH_LONG).show();
+                            mListener.onAMClick(position, mData.get(position), daytime_variant);
+//                            Toast.makeText(mActivity, "Clicked " + mData.get(position) + " " + daytime_variant, Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -81,6 +83,10 @@ public class AMTimeAdapter extends BaseAdapter {
         }
 
         return convertView;
+    }
+
+    public interface ListAdapterListener { // create an interface
+        void onAMClick(int position, String s, String daytime_variant); // create callback function
     }
 
     private class ViewHolder {

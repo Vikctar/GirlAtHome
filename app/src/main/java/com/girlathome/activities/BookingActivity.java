@@ -66,9 +66,9 @@ public class BookingActivity extends AppCompatActivity {
         } else if (fragments == 2) {
             setUpTitle(getString(R.string.pick_a_date));
         } else if (fragments == 3) {
-            setUpTitle(getString(R.string.style_details));
+            setUpTitle(getString(R.string.pick_a_time));
         } else if (fragments == 4) {
-            setUpTitle(getString(R.string.more_details));
+            setUpTitle(getString(R.string.confirm_booking));
         } else if (fragments == 5) {
             setUpTitle(getString(R.string.add_images));
         }

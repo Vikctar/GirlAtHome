@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:padding="15dp">
-
+    <!--name-->
     <com.ctrlplusz.anytextview.AnyTextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
@@ -16,7 +16,7 @@
         android:textSize="25sp"
         android:textStyle="bold"
         app:typeface="NirmalaB.ttf" />
-
+    <!--location-->
     <com.ctrlplusz.anytextview.AnyTextView
         android:id="@+id/location"
         android:layout_width="wrap_content"
@@ -28,11 +28,24 @@
         android:textSize="18sp"
         app:typeface="Nirmala.ttf" />
 
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/view_on_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:text="See on map >"
+        android:textColor="@color/green_color"
+        android:textSize="18sp"
+        app:typeface="Nirmala.ttf" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
         android:background="@color/grey_lighter" />
 
     <com.ctrlplusz.anytextview.AnyTextView
@@ -51,6 +64,20 @@
         android:layout_marginTop="20dp"
         android:background="@color/grey_lighter" />
     <!--reviews-->
+    <RatingBar
+        android:id="@+id/ratingbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-30dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:rating="4"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:stepSize="1"
+        android:theme="@style/RatingBar"
+        android:transformPivotX="0dp" />
+
     <com.ctrlplusz.anytextview.AnyTextView
         android:id="@+id/reviews"
         android:layout_width="wrap_content"
@@ -64,7 +91,11 @@
         android:id="@+id/see_all_reviews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
         android:text="See all reviews >"
         android:textColor="@color/green_color"
         android:textSize="18sp"
@@ -74,7 +105,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
         android:background="@color/grey_lighter" />
     <!--working hours-->
     <com.ctrlplusz.anytextview.AnyTextView
@@ -112,13 +142,86 @@
         android:layout_marginTop="20dp"
         android:background="@color/grey_lighter" />
     <!--styles-->
-    <com.ctrlplusz.anytextview.AnyTextView
-        android:id="@+id/styles"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="12 styles"
-        android:textColor="@color/darkAccent"
-        android:textSize="18sp"
-        app:typeface="Nirmala.ttf" />
+        android:layout_marginBottom="10dp">
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/styles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12 styles"
+            android:textColor="@color/darkAccent"
+            android:textSize="20sp"
+            app:typeface="NirmalaB.ttf" />
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/see_all_styles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:text="@string/see_all"
+            android:textColor="@color/green_color"
+            android:textSize="18sp"
+            app:typeface="Nirmala.ttf" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@color/grey_lighter" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/grey_lighter" />
+    <!--how_to videos-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/how_to_videos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10 How to videos"
+            android:textColor="@color/darkAccent"
+            android:textSize="20sp"
+            app:typeface="NirmalaB.ttf" />
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/see_all_videos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/see_all"
+            android:textColor="@color/green_color"
+            android:textSize="18sp"
+            app:typeface="Nirmala.ttf" />
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@color/grey_lighter" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/grey_lighter" />
 </LinearLayout>
