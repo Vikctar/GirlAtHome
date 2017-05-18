@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import android.widget.TextView;
 
 import com.girlathome.R;
 import com.girlathome.activities.StylistDetails;
-import com.girlathome.models.StylistModel;
+import com.girlathome.models.ServiceModel;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
@@ -28,19 +27,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by steve on 5/6/17.
+ * Created by steve on 5/16/17.
  */
-public class StylistAdapter extends RecyclerView.Adapter<StylistAdapter.ViewHolder> {
-    private static final String TAG = StylistAdapter.class.getSimpleName();
-    String layout_variant;
+public class StylesAdapter extends RecyclerView.Adapter<StylesAdapter.ViewHolder> {
+
+    private static final String TAG = StylesAdapter.class.getSimpleName();
+
     private Context mContext;
-    private List<StylistModel> mData;
+    private List<ServiceModel> mData;
     private DisplayImageOptions options;
 
     /**
      * Change {@link List} type according to your needs
      */
-    public StylistAdapter(Context context, List<StylistModel> data, String layout_variant) {
+    public StylesAdapter(Context context, List<ServiceModel> data) {
         if (context == null) {
             throw new NullPointerException("context can not be NULL");
         }
@@ -51,7 +51,6 @@ public class StylistAdapter extends RecyclerView.Adapter<StylistAdapter.ViewHold
 
         this.mContext = context;
         this.mData = data;
-        this.layout_variant = layout_variant;
         options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.image_placeholder)
                 .showImageForEmptyUri(R.drawable.image_placeholder)
@@ -69,26 +68,19 @@ public class StylistAdapter extends RecyclerView.Adapter<StylistAdapter.ViewHold
      */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = null;
-        if (layout_variant.equals("home")) {
-            view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.stylist_home_row, parent, false);
-        } else {
-            view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.stylist_fragment_row, parent, false);
-        }
-        Log.d("layout_variant", layout_variant);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.styles_row, parent, false);
 
         return new ViewHolder(view);
     }
 
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final StylesAdapter.ViewHolder holder, int position) {
         // include binding logic here
-        final StylistModel stylistModel = mData.get(position);
-        holder.tvName.setText(stylistModel.getName());
-//        holder.tvLocation.setText("Kshs." + stylistModel.getPrice());
+        final ServiceModel serviceModel = mData.get(position);
+        holder.tvName.setText(serviceModel.getName());
+        holder.tvStyleType.setText("Hair Style");
 
         LayerDrawable stars = (LayerDrawable) holder.ratingBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(mContext.getResources().getColor(R.color.mauvre), PorterDuff.Mode.SRC_ATOP);
@@ -97,7 +89,7 @@ public class StylistAdapter extends RecyclerView.Adapter<StylistAdapter.ViewHold
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(mContext, StylistDetails.class);
-                i.putExtra("stylistModel", stylistModel);
+                i.putExtra("serviceModel", serviceModel);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(i);
             }
@@ -150,8 +142,8 @@ public class StylistAdapter extends RecyclerView.Adapter<StylistAdapter.ViewHold
         ImageView wishListImageView;*/
         @BindView(R.id.name)
         TextView tvName;
-        @BindView(R.id.location)
-        TextView tvLocation;
+        @BindView(R.id.style_type)
+        TextView tvStyleType;
         @BindView(R.id.ratingbar)
         RatingBar ratingBar;
 

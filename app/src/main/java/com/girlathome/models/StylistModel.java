@@ -38,153 +38,132 @@ public class StylistModel
 
     private String created_at;
 
-    public String getPhone_number ()
-    {
+    public StylistModel(String name) {
+        this.name = name;
+
+    }
+
+    public StylistModel() {
+
+    }
+
+    public String getPhone_number() {
         return phone_number;
     }
 
-    public void setPhone_number (String phone_number)
-    {
+    public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
 
-    public String getStatus ()
-    {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus (String status)
-    {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public String getEmail_verified ()
-    {
+    public String getEmail_verified() {
         return email_verified;
     }
 
-    public void setEmail_verified (String email_verified)
-    {
+    public void setEmail_verified(String email_verified) {
         this.email_verified = email_verified;
     }
 
-    public String getPhone_code ()
-    {
+    public String getPhone_code() {
         return phone_code;
     }
 
-    public void setPhone_code (String phone_code)
-    {
+    public void setPhone_code(String phone_code) {
         this.phone_code = phone_code;
     }
 
-    public String getAccount_status ()
-    {
+    public String getAccount_status() {
         return account_status;
     }
 
-    public void setAccount_status (String account_status)
-    {
+    public void setAccount_status(String account_status) {
         this.account_status = account_status;
     }
 
-    public String getStylist_id ()
-    {
+    public String getStylist_id() {
         return stylist_id;
     }
 
-    public void setStylist_id (String stylist_id)
-    {
+    public void setStylist_id(String stylist_id) {
         this.stylist_id = stylist_id;
     }
 
-    public String getEmail_code ()
-    {
+    public String getEmail_code() {
         return email_code;
     }
 
-    public void setEmail_code (String email_code)
-    {
+    public void setEmail_code(String email_code) {
         this.email_code = email_code;
     }
 
-    public String getPhone_verified ()
-    {
+    public String getPhone_verified() {
         return phone_verified;
     }
 
-    public void setPhone_verified (String phone_verified)
-    {
+    public void setPhone_verified(String phone_verified) {
         this.phone_verified = phone_verified;
     }
 
-    public String getDay_end ()
-    {
+    public String getDay_end() {
         return day_end;
     }
 
-    public void setDay_end (String day_end)
-    {
+    public void setDay_end(String day_end) {
         this.day_end = day_end;
     }
 
-    public String getDay_start ()
-    {
+    public String getDay_start() {
         return day_start;
     }
 
-    public void setDay_start (String day_start)
-    {
+    public void setDay_start(String day_start) {
         this.day_start = day_start;
     }
 
-    public String getUpdated_at ()
-    {
+    public String getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at (String updated_at)
-    {
+    public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
 
-    public String getEmail ()
-    {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail (String email)
-    {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getVerified ()
-    {
+    public String getVerified() {
         return verified;
     }
 
-    public void setVerified (String verified)
-    {
+    public void setVerified(String verified) {
         this.verified = verified;
     }
 
-    public String getName ()
-    {
+    public String getName() {
         return name;
     }
 
-    public void setName (String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getCreated_at ()
-    {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at (String created_at)
-    {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 }

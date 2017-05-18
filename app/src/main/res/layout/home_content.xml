@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
+            <!--just booked-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -24,9 +24,104 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="30dp"
                 android:paddingTop="15dp">
+                <!--stylists around-->
+                <com.ctrlplusz.anytextview.AnyTextView
+                    android:id="@+id/just_booked_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="@string/just_booked"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:typeface="NirmalaB.ttf" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/just_booked_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp" />
+            <!--categories-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="30dp"
+                android:paddingTop="15dp">
+                <!--stylists around-->
+                <com.ctrlplusz.anytextview.AnyTextView
+                    android:id="@+id/categories_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="@string/categories"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:typeface="NirmalaB.ttf" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/categories_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp" />
+            <!--styles around-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp">
+                <!--stylists around-->
+                <com.ctrlplusz.anytextview.AnyTextView
+                    android:id="@+id/styles_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="@string/styles_around"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:typeface="NirmalaB.ttf" />
 
                 <com.ctrlplusz.anytextview.AnyTextView
-                    android:id="@+id/page_title"
+                    android:id="@+id/styles_see_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:lines="1"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
+                    android:text="See all >"
+                    android:textColor="@color/green_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:typeface="Nirmala.ttf" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/styles_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp" />
+            <!--stylists around-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp">
+
+                <com.ctrlplusz.anytextview.AnyTextView
+                    android:id="@+id/stylists_page_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -37,15 +132,21 @@
                     app:typeface="NirmalaB.ttf" />
 
                 <com.ctrlplusz.anytextview.AnyTextView
-                    android:id="@+id/location"
+                    android:id="@+id/stylists_see_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
                     android:lines="1"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
                     android:text="See all >"
-                    android:textColor="@color/darkAccent"
-                    android:textSize="15sp"
+                    android:textColor="@color/green_color"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:typeface="Nirmala.ttf" />
             </RelativeLayout>

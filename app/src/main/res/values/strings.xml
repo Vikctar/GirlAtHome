@@ -74,7 +74,7 @@
     <string name="set_location">Set Location</string>
     <string name="view_profile">View Profile</string>
     <string name="log_out">Log Out</string>
-    <string name="stylists_around">Stylists around</string>
+    <string name="stylists_around">Stylists</string>
     <string name="apply">Book</string>
     <string name="book_me">Book Me</string>
     <string name="working_hours">Working Hours</string>
@@ -97,4 +97,7 @@
     <string name="pick_a_time">Time of day</string>
     <string name="confirm_booking">Confrim Booking</string>
     <string name="see_all"><![CDATA[See all >]]></string>
+    <string name="styles_around">Styles</string>
+    <string name="just_booked">Just booked</string>
+    <string name="categories">Categories</string>
 </resources>
