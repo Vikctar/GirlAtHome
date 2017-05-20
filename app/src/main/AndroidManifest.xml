@@ -38,8 +38,7 @@
         <activity android:name=".activities.SettingsActivity" />
         <activity android:name=".activities.StylistDetails" />
         <activity android:name=".activities.BookingActivity" />
-        <activity android:name=".activities.MapActivity"></activity>
-
+        <activity android:name=".activities.MapActivity" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -53,6 +52,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity android:name=".activities.SeeAllActivity" />
+        <activity android:name=".activities.StyleDetails"></activity>
     </application>
 
 </manifest>

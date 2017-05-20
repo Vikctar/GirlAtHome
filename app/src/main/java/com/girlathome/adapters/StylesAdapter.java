@@ -3,18 +3,15 @@ package com.girlathome.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.LayerDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.girlathome.R;
-import com.girlathome.activities.StylistDetails;
+import com.girlathome.activities.StyleDetails;
 import com.girlathome.models.ServiceModel;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -32,7 +29,7 @@ import butterknife.ButterKnife;
 public class StylesAdapter extends RecyclerView.Adapter<StylesAdapter.ViewHolder> {
 
     private static final String TAG = StylesAdapter.class.getSimpleName();
-
+    String layout_variant;
     private Context mContext;
     private List<ServiceModel> mData;
     private DisplayImageOptions options;
@@ -40,7 +37,7 @@ public class StylesAdapter extends RecyclerView.Adapter<StylesAdapter.ViewHolder
     /**
      * Change {@link List} type according to your needs
      */
-    public StylesAdapter(Context context, List<ServiceModel> data) {
+    public StylesAdapter(Context context, List<ServiceModel> data, String layout_variant) {
         if (context == null) {
             throw new NullPointerException("context can not be NULL");
         }
@@ -60,6 +57,7 @@ public class StylesAdapter extends RecyclerView.Adapter<StylesAdapter.ViewHolder
                 .considerExifParams(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
+        this.layout_variant = layout_variant;
     }
 
 
@@ -68,8 +66,14 @@ public class StylesAdapter extends RecyclerView.Adapter<StylesAdapter.ViewHolder
      */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.styles_row, parent, false);
+        View view = null;
+        if (layout_variant.equals("home")) {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.styles_home_row, parent, false);
+        } else {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.styles_row, parent, false);
+        }
 
         return new ViewHolder(view);
     }
@@ -82,16 +86,19 @@ public class StylesAdapter extends RecyclerView.Adapter<StylesAdapter.ViewHolder
         holder.tvName.setText(serviceModel.getName());
         holder.tvStyleType.setText("Hair Style");
 
-        LayerDrawable stars = (LayerDrawable) holder.ratingBar.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(mContext.getResources().getColor(R.color.mauvre), PorterDuff.Mode.SRC_ATOP);
-
         holder.avatarImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(mContext, StylistDetails.class);
+                Intent i = new Intent(mContext, StyleDetails.class);
                 i.putExtra("serviceModel", serviceModel);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(i);
+            }
+        });
+        holder.favImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.favImageView.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_selected_wish));
             }
         });
        /* holder.wishListImageView.setOnClickListener(new View.OnClickListener() {
@@ -138,14 +145,12 @@ public class StylesAdapter extends RecyclerView.Adapter<StylesAdapter.ViewHolder
         // include {@link View} components here
         @BindView(R.id.avatar)
         ImageView avatarImageView;
-        /*@BindView(R.id.wishlist_icon)
-        ImageView wishListImageView;*/
+        @BindView(R.id.fav_image_view)
+        ImageView favImageView;
         @BindView(R.id.name)
         TextView tvName;
         @BindView(R.id.style_type)
         TextView tvStyleType;
-        @BindView(R.id.ratingbar)
-        RatingBar ratingBar;
 
         public ViewHolder(View itemView) {
             super(itemView);

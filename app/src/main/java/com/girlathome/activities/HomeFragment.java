@@ -198,7 +198,7 @@ public class HomeFragment extends Fragment {
         justBookedRecyclerView.setLayoutManager(justBookedLlm);
         justBookedLlm.setOrientation(LinearLayoutManager.HORIZONTAL);
         justBookedRecyclerView.setItemViewCacheSize(serviceModelList.size());
-        StylesAdapter stylesAdapter = new StylesAdapter(parentActivity, serviceModelList);
+        StylesAdapter stylesAdapter = new StylesAdapter(parentActivity, serviceModelList, "home");
         justBookedRecyclerView.setAdapter(stylesAdapter);
 
         //styles adapter

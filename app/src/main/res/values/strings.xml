@@ -12,7 +12,7 @@
     <string name="sign_join">Log in | Register</string>
     <string name="action_search">Search</string>
     <string name="action_booking">Bookings</string>
-    <string name="search_hint">I am looking for...</string>
+    <string name="search_hint">Styles · Stylists · Products</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="login_register_quote">\"<b>GREAT HAIR</b> doesn\'t happen by chance. \nIt happens by <b>APPOINTMENT</b>.\"</string>
@@ -47,7 +47,7 @@
     <string name="continue_txt">Continue</string>
     <string name="time_of_style">Time It Takes</string>
     <string name="time">Time</string>
-    <string name="products_used">Products Used</string>
+    <string name="products_used">Products used</string>
     <string name="products_used_extra">Mention the different products used to make the style successful such as gels, sprays etc. Brand names are encouraged.</string>
     <string name="tell_us_details">Tells us something about your style</string>
     <string name="upload_pictures">Upload pictures of your style</string>
@@ -100,4 +100,10 @@
     <string name="styles_around">Styles</string>
     <string name="just_booked">Just booked</string>
     <string name="categories">Categories</string>
+    <string name="style_description_dummy">Short female cut popular during the 1960s and early 70s. The hair was cut over the ears, leaving a fringe in front of the ears, often brushed toward the face or straight down. The nape hair was cut along the hairline like a boys but more rounded instead of squared off like a man’s neckline.</string>
+    <string name="expand">See More</string>
+    <string name="collapse">Read less..</string>
+    <string name="review">This is an amazing style to bring out your eyes. It is appropriate for all ocassions and looks amazing to every hair type color.</string>
+    <string name="dummy_products">· Nice and lovely hair food\n· TCB Hair Relaxer</string>
+    <string name="get_this">Get this now</string>
 </resources>

@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/avatar"
             android:layout_width="150dp"
-            android:layout_height="170dp"
+            android:layout_height="150dp"
             android:scaleType="centerCrop"
             android:src="@drawable/image_placeholder" />
 
@@ -72,5 +72,6 @@
             android:textColor="@color/darkAccent"
             android:textSize="14sp"
             app:typeface="Nirmala.ttf" />
+
     </RelativeLayout>
 </LinearLayout>
