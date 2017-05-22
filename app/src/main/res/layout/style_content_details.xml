@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="15dp">
+    <!--name-->
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:typeface="NirmalaB.ttf" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--profile image-->
+        <com.pkmmte.view.CircularImageView
+            android:id="@+id/prof_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentRight="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_person"
+            app:border="true"
+            app:border_color="@color/grey_lighter"
+            app:border_width="4dp" />
+
+        <!--style type-->
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/style_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Hair style"
+            android:textColor="@color/darkAccent"
+            android:textSize="18sp"
+            app:typeface="Nirmala.ttf" />
+        <!--style by-->
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/style_type"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="By"
+            android:textColor="@color/darkAccent"
+            android:textSize="18sp"
+            app:typeface="Nirmala.ttf" />
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/style_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/style_type"
+            android:layout_toLeftOf="@+id/prof_image"
+            android:layout_toRightOf="@+id/by"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:text="Steve Kamau"
+            android:textColor="@color/green_color"
+            android:textSize="18sp"
+            app:typeface="Nirmala.ttf" />
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_lighter" />
+    <!--description of style-->
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The Style"
+        android:textColor="@color/darkAccent"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:typeface="NirmalaB.ttf" />
+
+    <com.girlathome.utilities.ExpandableTextView
+        android:id="@+id/description_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="@string/style_description_dummy"
+        android:textColor="@color/darkAccent"
+        android:textSize="18sp"
+        app:animation_duration="750"
+        app:typeface="Nirmala.ttf" />
+
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/see_more_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:text="Read more.."
+        android:textColor="@color/green_color"
+        android:textSize="18sp"
+        app:typeface="Nirmala.ttf" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/grey_lighter" />
+    <!--duration to make-->
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/time_it_takes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2 hours minimum"
+        android:textColor="@color/darkAccent"
+        android:textSize="18sp"
+        app:typeface="Nirmala.ttf" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/grey_lighter" />
+
+    <!--reviews-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/review_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Reviews"
+            android:textColor="@color/darkAccent"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:typeface="NirmalaB.ttf" />
+        <!--review recyclerview goes here-->
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/review_title"
+            android:text="Jane Diana"
+            android:textColor="@color/darkAccent"
+            android:textSize="18sp"
+            app:typeface="Nirmala.ttf" />
+
+        <RatingBar
+            android:id="@+id/ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username"
+            android:layout_marginBottom="-30dp"
+            android:layout_marginTop="3.5dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="4"
+            android:scaleX="0.3"
+            android:scaleY="0.3"
+            android:stepSize="1"
+            android:theme="@style/RatingBar"
+            android:transformPivotX="0dp" />
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username"
+            android:layout_marginLeft="80dp"
+            android:text="2017/12/06"
+            android:textColor="@color/grey_2"
+            android:textSize="14sp"
+            app:typeface="Nirmala.ttf" />
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ratingbar"
+            android:text="@string/review"
+            android:textColor="@color/darkAccent"
+            android:textSize="18sp"
+            app:typeface="Nirmala.ttf" />
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/see_all_reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/reviews"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="Read all 21 reviews >"
+            android:textColor="@color/green_color"
+            android:textSize="18sp"
+            app:typeface="Nirmala.ttf" />
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/grey_lighter" />
+    <!--Products used-->
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/products_used"
+        android:textColor="@color/darkAccent"
+        android:textSize="20sp"
+        app:typeface="NirmalaB.ttf" />
+
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/weekdays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/dummy_products"
+        android:textColor="@color/darkAccent"
+        android:textSize="18sp"
+        app:typeface="Nirmala.ttf" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/grey_lighter" />
+    <!--other styles-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/styles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other styles"
+            android:textColor="@color/darkAccent"
+            android:textSize="20sp"
+            app:typeface="NirmalaB.ttf" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@color/grey_lighter" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/grey_lighter" />
+    <!--how_to videos-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/how_to_videos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How to do this style"
+            android:textColor="@color/darkAccent"
+            android:textSize="20sp"
+            app:typeface="NirmalaB.ttf" />
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/see_all_videos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/see_all"
+            android:textColor="@color/green_color"
+            android:textSize="18sp"
+            app:typeface="Nirmala.ttf" />
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@color/grey_lighter" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/grey_lighter" />
+</LinearLayout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="10dp">
+
+                <com.ctrlplusz.anytextview.AnyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="@string/what_time"
+                    android:textColor="@color/grey_2"
+                    android:textSize="22sp"
+                    app:typeface="NirmalaB.ttf" />
+            </RelativeLayout>
+
+            <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/am_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/green_color"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/AM"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:typeface="NirmalaB.ttf" />
+
+            <com.girlathome.utilities.InnerGridView
+                android:id="@+id/am_grid_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:columnWidth="60dp"
+                android:gravity="center"
+                android:numColumns="auto_fit"
+                android:padding="5dp" />
+
+
+            <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/pm_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/green_color"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/pm"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:typeface="NirmalaB.ttf" />
+
+            <com.girlathome.utilities.InnerGridView
+                android:id="@+id/pm_grid_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:columnWidth="60dp"
+                android:gravity="center"
+                android:numColumns="auto_fit"
+                android:padding="5dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -34,12 +34,13 @@ public class AccountSharedPreferences {
         editor.apply();
     }
 
+    public String getCounty() {
+        return sharedPreferences.getString("county", "");
+    }
+
     public void setCounty(String county) {
         editor.putString("county", county);
         editor.apply();
-    }
-    public String getCounty() {
-        return sharedPreferences.getString("county", "");
     }
 
     public void setPlaceLabel(String label) {
@@ -49,6 +50,15 @@ public class AccountSharedPreferences {
 
     public void setPlaceLabelList(String labelList) {
         editor.putString("place_label_list", labelList);
+        editor.apply();
+    }
+
+    public String getHomeData() {
+        return sharedPreferences.getString("home_data", "");
+    }
+
+    public void setHomeData(String homeData) {
+        editor.putString("home_data", homeData);
         editor.apply();
     }
 
