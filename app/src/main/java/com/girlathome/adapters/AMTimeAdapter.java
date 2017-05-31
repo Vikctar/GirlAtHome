@@ -1,14 +1,16 @@
 package com.girlathome.adapters;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.girlathome.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,17 +18,18 @@ import java.util.List;
  */
 public class AMTimeAdapter extends BaseAdapter {
 
-    String daytime_variant, hour_variant;
+    private String daytime_variant, hour_variant, dateSelected;
     private Activity mActivity;
     private List<String> mData;
     private ListAdapterListener mListener;
 
-    public AMTimeAdapter(Activity a, List<String> mData, String daytime_variant, String hour_variant, ListAdapterListener mListener) {
+    public AMTimeAdapter(Activity a, List<String> mData, String daytime_variant, String hour_variant, String dateSelected, ListAdapterListener mListener) {
         mActivity = a;
         this.mData = mData;
         this.daytime_variant = daytime_variant;
         this.hour_variant = hour_variant;
         this.mListener = mListener;
+        this.dateSelected = dateSelected;
     }
 
     public int getCount() {
@@ -55,34 +58,48 @@ public class AMTimeAdapter extends BaseAdapter {
         }
 
         holder.text.setText(mData.get(position));
-
-
-        //check what time of day we are at
-        if (daytime_variant.equalsIgnoreCase("am")) {
-//            holder.text.setTextColor(mActivity.getResources().getColor(R.color.darkAccent));
-            if (Integer.valueOf(hour_variant) >= Integer.valueOf(mData.get(position))) {
-//            means current time is past the current value
-                holder.text.setTextColor(mActivity.getResources().getColor(R.color.grey_2));
-            } else {
-                if (Integer.valueOf(mData.get(position)) == 12) {
+        Log.d("selected_time", dateSelected + "=" + getDate());
+        //if its today
+        if (dateSelected.equalsIgnoreCase(getDate())) {
+            //check what time of day we are at
+            if (daytime_variant.equalsIgnoreCase("am")) {
+                if (Integer.valueOf(hour_variant) >= Integer.valueOf(mData.get(position))) {
+                    //means current time is past the current value
                     holder.text.setTextColor(mActivity.getResources().getColor(R.color.grey_2));
                 } else {
-                    holder.text.setTextColor(mActivity.getResources().getColor(R.color.darkAccent));
-                    //set listener for enabled hours
-                    holder.text.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            mListener.onAMClick(position, mData.get(position), daytime_variant);
+                    if (Integer.valueOf(mData.get(position)) == 12) {
+                        holder.text.setTextColor(mActivity.getResources().getColor(R.color.grey_2));
+                    } else {
+                        holder.text.setTextColor(mActivity.getResources().getColor(R.color.darkAccent));
+                        //set listener for enabled hours
+                        holder.text.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                mListener.onAMClick(position, mData.get(position), daytime_variant);
 //                            Toast.makeText(mActivity, "Clicked " + mData.get(position) + " " + daytime_variant, Toast.LENGTH_LONG).show();
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
+            } else if (daytime_variant.equalsIgnoreCase("pm")) {
+                holder.text.setTextColor(mActivity.getResources().getColor(R.color.grey_2));
             }
-        } else if (daytime_variant.equalsIgnoreCase("pm")) {
-            holder.text.setTextColor(mActivity.getResources().getColor(R.color.grey_2));
+        } else {
+            holder.text.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mListener.onAMClick(position, mData.get(position), daytime_variant);
+//                            Toast.makeText(mActivity, "Clicked " + mData.get(position) + " " + daytime_variant, Toast.LENGTH_LONG).show();
+                }
+            });
         }
-
         return convertView;
+    }
+
+    String getDate() {
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(now);
     }
 
     public interface ListAdapterListener { // create an interface

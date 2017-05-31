@@ -32,6 +32,7 @@ import java.util.Locale;
 public class CalendarCustomView extends LinearLayout {
     private static final String TAG = CalendarCustomView.class.getSimpleName();
     private static final int MAX_CALENDAR_COLUMN = 42;
+    List<Date> dayValueInCells = new ArrayList<Date>();
     private ImageView previousButton, nextButton;
     private TextView currentDate;
     private GridView calendarGridView;
@@ -95,16 +96,49 @@ public class CalendarCustomView extends LinearLayout {
         calendarGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String clickedText = calendarGridView.getItemAtPosition(position).toString();
-//                TextView textViewItem = ((TextView) view.findViewById(R.id.Destination));
-                Toast.makeText(context, "Clicked " + clickedText, Toast.LENGTH_LONG).show();
-                ((BookingActivity) context).createFragments(new TimeFragment());
+                Date mDate = dayValueInCells.get(position);
+                Calendar dateCal = Calendar.getInstance();
+                dateCal.setTime(mDate);
+                int dayValue = dateCal.get(Calendar.DAY_OF_MONTH);
+                int displayMonth = dateCal.get(Calendar.MONTH) + 1;
+                int displayYear = dateCal.get(Calendar.YEAR);
+                String correctedMonth = "" + displayMonth;
+                if (displayMonth < 10) {
+                    correctedMonth = "0" + displayMonth;
+                }
+                Log.d("selected_date_1", mDate.toString());
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                //check if its today
+                if (sdf.format(mDate).equals(sdf.format(new Date()))) {
+                    Log.d("selected_date_1", mDate + "==" + sdf.format(new Date()) + " The date is today");
+                    ((BookingActivity) context).setDateSelected(dayValue + "/" + correctedMonth + "/" + displayYear);
+                    Toast.makeText(context, "Clicked " + dayValue + "/" + displayMonth + "/" + displayYear, Toast.LENGTH_LONG).show();
+                    ((BookingActivity) context).createFragments(new TimeFragment());
+                } else {
+                    //check if date is passed/future
+                    Date current = new Date();
+                    Long l = mDate.getTime();
+                    //create date object
+                    Date next = new Date(l);
+                    //compare both dates
+                    if (next.after(current)) {
+                        //The date is future day
+                        Log.d("selected_date_1", next + "==" + current + " The date is future day");
+                        ((BookingActivity) context).setDateSelected(dayValue + "/" + correctedMonth + "/" + displayYear);
+                        Toast.makeText(context, "Clicked " + dayValue + "/" + displayMonth + "/" + displayYear, Toast.LENGTH_LONG).show();
+                        ((BookingActivity) context).createFragments(new TimeFragment());
+                    } else {
+                        //The date is older than current day
+                        Log.d("selected_date_2", next + "==" + current + "The date is older than current day");
+                    }
+                }
+
             }
         });
     }
 
     private void setUpCalendarAdapter() {
-        List<Date> dayValueInCells = new ArrayList<Date>();
        /* mQuery = new DatabaseQuery(context);
         List<EventObjects> mEvents = mQuery.getAllFutureEvents();*/
         Calendar mCal = (Calendar) cal.clone();

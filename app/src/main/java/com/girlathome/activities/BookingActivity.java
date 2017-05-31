@@ -18,7 +18,7 @@ public class BookingActivity extends AppCompatActivity {
     FragmentTransaction fragmentTransaction;
     Toolbar toolbar;
     TextView toolbar_text;
-    String item;
+    String item, dateSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class BookingActivity extends AppCompatActivity {
         } else if (fragments == 3) {
             setUpTitle(getString(R.string.pick_a_time));
         } else if (fragments == 4) {
-            setUpTitle(getString(R.string.confirm_booking));
+            setUpTitle(getString(R.string.payment));
         } else if (fragments == 5) {
             setUpTitle(getString(R.string.add_images));
         }
@@ -96,4 +96,11 @@ public class BookingActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void setDateSelected(String dateSelected) {
+        this.dateSelected = dateSelected;
+    }
+
+    public String getDateSelected() {
+        return dateSelected;
+    }
 }

@@ -45,6 +45,7 @@ public class CalendarGridAdapter extends ArrayAdapter {
         int dayValue = dateCal.get(Calendar.DAY_OF_MONTH);
         int displayMonth = dateCal.get(Calendar.MONTH) + 1;
         int displayYear = dateCal.get(Calendar.YEAR);
+        int currentDay = currentDate.get(Calendar.DAY_OF_MONTH);
         int currentMonth = currentDate.get(Calendar.MONTH) + 1;
         int currentYear = currentDate.get(Calendar.YEAR);
         View view = convertView;
@@ -62,6 +63,13 @@ public class CalendarGridAdapter extends ArrayAdapter {
             view.setBackgroundColor(getContext().getResources().getColor(R.color.grey_lighter));
             cellNumber.setTextColor(getContext().getResources().getColor(R.color.grey_2));
         }
+
+        if (displayMonth == currentMonth && displayYear == currentYear && dayValue == currentDay) {
+            view.setBackgroundColor(getContext().getResources().getColor(R.color.mauvre));
+            cellNumber.setTextColor(getContext().getResources().getColor(R.color.white));
+        }
+
+
         //Add events to the calendar
 //        TextView eventIndicator = (TextView)view.findViewById(R.id.event_id);
 //        Calendar eventCalendar = Calendar.getInstance();

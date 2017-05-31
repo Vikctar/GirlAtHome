@@ -24,6 +24,7 @@ import com.nineoldandroids.view.ViewHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class StyleDetails extends BaseActivity implements ObservableScrollViewCallbacks {
     @BindView(R.id.toolbar)
@@ -118,12 +119,12 @@ public class StyleDetails extends BaseActivity implements ObservableScrollViewCa
         });
     }
 
-   /* @OnClick(R.id.book)
+    @OnClick(R.id.book)
     void book() {
         startActivity(new Intent(getApplicationContext(), BookingActivity.class));
     }
 
-    @OnClick(R.id.view_on_map)
+/*    @OnClick(R.id.view_on_map)
     void openMap() {
 //        createFragments(new MapFragment());
         startActivity(new Intent(getApplicationContext(), MapActivity.class));

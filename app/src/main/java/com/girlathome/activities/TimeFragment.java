@@ -40,7 +40,7 @@ public class TimeFragment extends Fragment implements PMTimeAdapter.ListAdapterL
     String[] amHours;
     String[] pmHours;
     String daytime_variant;
-    String hour_variant;
+    String hour_variant, dateSelected;
 
 
     public TimeFragment() {
@@ -83,6 +83,7 @@ public class TimeFragment extends Fragment implements PMTimeAdapter.ListAdapterL
     private void setViews() {
 //        title
         ((BookingActivity) parentActivity).setUpTitle(getString(R.string.pick_a_time));
+        dateSelected = ((BookingActivity) parentActivity).getDateSelected();
         daytime_variant = getDayFormatted(getDateTime()).substring(getDayFormatted(getDateTime()).length() - 2);
         hour_variant = getDayFormatted(getDateTime()).substring(getDayFormatted(getDateTime()).length() - 2);
         hour_variant = getDayFormatted(getDateTime()).length() < 2 ? getDayFormatted(getDateTime())
@@ -97,14 +98,14 @@ public class TimeFragment extends Fragment implements PMTimeAdapter.ListAdapterL
     private void setAmAdapter() {
         amHours = new String[]{"12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"};
         List<String> amList = Arrays.asList(amHours);
-        AMTimeAdapter timeAdapter = new AMTimeAdapter(parentActivity, amList, daytime_variant, hour_variant, this);
+        AMTimeAdapter timeAdapter = new AMTimeAdapter(parentActivity, amList, daytime_variant, hour_variant, dateSelected, this);
         amInnerGridView.setAdapter(timeAdapter);
     }
 
     private void setPMAdapter() {
         pmHours = new String[]{"12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"};
         List<String> pmList = Arrays.asList(pmHours);
-        PMTimeAdapter pmTimeAdapter = new PMTimeAdapter(parentActivity, pmList, daytime_variant, hour_variant, this);
+        PMTimeAdapter pmTimeAdapter = new PMTimeAdapter(parentActivity, pmList, daytime_variant, hour_variant, dateSelected, this);
         pmInnerGridView.setAdapter(pmTimeAdapter);
 
     }
@@ -171,12 +172,12 @@ public class TimeFragment extends Fragment implements PMTimeAdapter.ListAdapterL
     @Override
     public void onPMClick(int position, String hour_variant, String daytime_variant) {
         Toast.makeText(parentActivity, "Clicked " + hour_variant + " " + daytime_variant, Toast.LENGTH_LONG).show();
-        ((BookingActivity) parentActivity).createFragments(new ConfirmBookingFragment());
+        ((BookingActivity) parentActivity).createFragments(new PaymentFragment());
     }
 
     @Override
     public void onAMClick(int position, String s, String daytime_variant) {
         Toast.makeText(parentActivity, "Clicked " + hour_variant + " " + daytime_variant, Toast.LENGTH_LONG).show();
-        ((BookingActivity) parentActivity).createFragments(new ConfirmBookingFragment());
+        ((BookingActivity) parentActivity).createFragments(new PaymentFragment());
     }
 }
