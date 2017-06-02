@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/image_placeholder" />
+        <!--name-->
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/avatar"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Jamaican Braids"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:typeface="Nirmala.ttf" />
+        <!--type of style-->
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/style_type"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_toEndOf="@+id/avatar"
+            android:layout_toRightOf="@+id/avatar"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="Hair Style"
+            android:textColor="@color/darkAccent"
+            android:textSize="12sp"
+            app:typeface="Nirmala.ttf" />
+        <!--price-->
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/style_type"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/avatar"
+            android:layout_toRightOf="@+id/avatar"
+            android:text="Ksh. 400"
+            android:textColor="@color/mauvre"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:typeface="Nirmala.ttf" />
+        <!--by who-->
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/time_left"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/price"
+            android:layout_toEndOf="@+id/avatar"
+            android:layout_toRightOf="@+id/avatar"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="By Steve Kamau"
+            android:textColor="@color/darkAccent"
+            android:textSize="12sp"
+            app:typeface="Nirmala.ttf" />
+    </RelativeLayout>
+
+</LinearLayout>

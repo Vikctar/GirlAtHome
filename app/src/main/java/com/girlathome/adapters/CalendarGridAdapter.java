@@ -25,13 +25,15 @@ public class CalendarGridAdapter extends ArrayAdapter {
     Calendar dateCal;
     private LayoutInflater mInflater;
     private List<Date> monthlyDates;
-    private Calendar currentDate;
+    private Calendar currentMonthView;
+    private Calendar todayDate;
 
     //    private List<EventObjects> allEvents;
-    public CalendarGridAdapter(Context context, List<Date> monthlyDates, Calendar currentDate/*, List<EventObjects> allEvents*/) {
+    public CalendarGridAdapter(Context context, List<Date> monthlyDates, Calendar currentMonthView, Calendar todayDate/*, List<EventObjects> allEvents*/) {
         super(context, R.layout.single_cell_layout);
         this.monthlyDates = monthlyDates;
-        this.currentDate = currentDate;
+        this.currentMonthView = currentMonthView;
+        this.todayDate = todayDate;
 //        this.allEvents = allEvents;
         mInflater = LayoutInflater.from(context);
     }
@@ -45,9 +47,12 @@ public class CalendarGridAdapter extends ArrayAdapter {
         int dayValue = dateCal.get(Calendar.DAY_OF_MONTH);
         int displayMonth = dateCal.get(Calendar.MONTH) + 1;
         int displayYear = dateCal.get(Calendar.YEAR);
-        int currentDay = currentDate.get(Calendar.DAY_OF_MONTH);
-        int currentMonth = currentDate.get(Calendar.MONTH) + 1;
-        int currentYear = currentDate.get(Calendar.YEAR);
+        int currentDay = currentMonthView.get(Calendar.DAY_OF_MONTH);
+        int currentMonth = currentMonthView.get(Calendar.MONTH) + 1;
+        int currentYear = currentMonthView.get(Calendar.YEAR);
+        int todayDay = todayDate.get(Calendar.DAY_OF_MONTH);
+        int todayMonth = todayDate.get(Calendar.MONTH) + 1;
+        int todayYear = todayDate.get(Calendar.YEAR);
         View view = convertView;
         if (view == null) {
             view = mInflater.inflate(R.layout.single_cell_layout, parent, false);
@@ -60,15 +65,14 @@ public class CalendarGridAdapter extends ArrayAdapter {
             view.setBackgroundColor(Color.parseColor("#FFFFFF"));
             cellNumber.setTextColor(getContext().getResources().getColor(R.color.darkAccent));
         } else {
-            view.setBackgroundColor(getContext().getResources().getColor(R.color.grey_lighter));
+//            view.setBackgroundColor(getContext().getResources().getColor(R.color.grey_lighter));
             cellNumber.setTextColor(getContext().getResources().getColor(R.color.grey_2));
         }
-
-        if (displayMonth == currentMonth && displayYear == currentYear && dayValue == currentDay) {
+        //highlight current day
+        if (dayValue == todayDay && displayMonth == todayMonth && displayYear == todayYear) {
             view.setBackgroundColor(getContext().getResources().getColor(R.color.mauvre));
             cellNumber.setTextColor(getContext().getResources().getColor(R.color.white));
         }
-
 
         //Add events to the calendar
 //        TextView eventIndicator = (TextView)view.findViewById(R.id.event_id);

@@ -9,7 +9,7 @@
     <string name="favourites">Favourites</string>
     <string name="virtual_makeover">Virtual Makeover</string>
     <string name="account">My Account</string>
-    <string name="sign_join">Log in | Register</string>
+    <string name="sign_join">Log in or Register</string>
     <string name="action_search">Search</string>
     <string name="action_booking">Bookings</string>
     <string name="search_hint">Styles · Stylists · Products</string>
@@ -111,4 +111,6 @@
     <string name="cash">Cash</string>
     <string name="mpesa">Mpesa</string>
     <string name="add_note">Add a note</string>
+    <string name="cash_payment_subtext">To be paid</string>
+    <string name="mpesa_payment_subtext">Paid with</string>
 </resources>

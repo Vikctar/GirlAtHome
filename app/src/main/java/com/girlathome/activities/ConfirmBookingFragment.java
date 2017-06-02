@@ -13,8 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.girlathome.R;
+import com.girlathome.databaseHandlers.BookingsDB;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +39,12 @@ public class ConfirmBookingFragment extends Fragment {
     TextView tvNotePreview;
     @BindView(R.id.note_layout)
     CardView noteCardView;
-    String message;
+    @BindView(R.id.payment_mode)
+    TextView tvPaymentMode;
+    @BindView(R.id.time_date_selected)
+    TextView tvTimeDateSelected;
+    String message, paymentMode, timeSelected, dateSelected, styleName;
+    BookingsDB bDb;
 
 
     public ConfirmBookingFragment() {
@@ -62,12 +74,52 @@ public class ConfirmBookingFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 //        title
         ((BookingActivity) parentActivity).setUpTitle(getString(R.string.confirm_booking));
+        bDb = new BookingsDB(parentActivity);
         setViews();
         return rootView;
     }
 
     private void setViews() {
         noteCardView.setVisibility(View.GONE);
+        paymentMode = ((BookingActivity) parentActivity).getPaymentMode();
+        timeSelected = ((BookingActivity) parentActivity).getTime();
+        dateSelected = ((BookingActivity) parentActivity).getDateSelected();
+
+        if (paymentMode.equalsIgnoreCase("cash")) {
+            tvPaymentMode.setText(getString(R.string.cash_payment_subtext) + " " + paymentMode);
+        } else {
+            tvPaymentMode.setText(getString(R.string.mpesa_payment_subtext) + " " + paymentMode);
+        }
+        tvTimeDateSelected.setText(timeSelected + " " + dateSelected);
+        try {
+            tvTimeDateSelected.setText(formatDateTime(dateSelected + " " + timeSelected));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        styleName = ((BookingActivity) parentActivity).getStyleName();
+    }
+
+    private String formatDateTime(String strCurrentDate) throws ParseException {
+       /* String strCurrentDate = "Wed, 18 Apr 2012 07:55:29 +0000";
+        SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy hh:mm:ss Z");
+        Date newDate = format.parse(strCurrentDate);
+
+        format = new SimpleDateFormat("MMM dd,yyyy hh:mm a");
+        String date = format.format(newDate);*/
+
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy hh:mm a", Locale.ENGLISH);
+        Date newDate = format.parse(strCurrentDate);
+
+        format = new SimpleDateFormat("EEE, dd MMM yyyy hh:mm a", Locale.ENGLISH);
+        return format.format(newDate);
+    }
+
+
+    @OnClick(R.id.done)
+    void addAppointment() {
+        bDb.addAppointment(0, "", "", styleName, "", "", dateSelected, timeSelected, "", "", "", message);
+        Toast.makeText(parentActivity, "Successfully booked an appointment!", Toast.LENGTH_SHORT).show();
+        parentActivity.finish();
     }
 
     @OnClick(R.id.add_note_layout)
@@ -78,7 +130,7 @@ public class ConfirmBookingFragment extends Fragment {
     @OnClick(R.id.cancel)
     void removeNote() {
         noteCardView.setVisibility(View.GONE);
-        message="";
+        message = "";
     }
 
     private void showAddNoteDialog() {
@@ -94,7 +146,7 @@ public class ConfirmBookingFragment extends Fragment {
         //dialogBuilder.setTitle("Add note");
         dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                 message = edMessage.getText().toString();
+                message = edMessage.getText().toString();
                 //do something with edt.getText().toString();
                 if (!TextUtils.isEmpty(message)) {
                     noteCardView.setVisibility(View.VISIBLE);

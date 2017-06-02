@@ -55,13 +55,20 @@ public class PaymentFragment extends Fragment {
 
     @OnClick(R.id.mpesa_layout)
     void mpesaClicked() {
-        ((BookingActivity) parentActivity).createFragments(new ConfirmBookingFragment());
+        onPaymentSelected("M-Pesa");
     }
 
     @OnClick(R.id.cash_layout)
     void cashClicked() {
+        onPaymentSelected("Cash");
+
+    }
+
+    private void onPaymentSelected(String payment_mode) {
+        ((BookingActivity) parentActivity).setPaymentMode(payment_mode);
         ((BookingActivity) parentActivity).createFragments(new ConfirmBookingFragment());
     }
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
 package com.girlathome.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +12,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.girlathome.R;
+import com.girlathome.models.BookingModel;
+import com.girlathome.models.ServiceModel;
 
 import butterknife.ButterKnife;
 
@@ -18,7 +21,8 @@ public class BookingActivity extends AppCompatActivity {
     FragmentTransaction fragmentTransaction;
     Toolbar toolbar;
     TextView toolbar_text;
-    String item, dateSelected;
+    String item, dateSelected, paymentMode, timeSelected, styleName;
+    ServiceModel styleModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,12 @@ public class BookingActivity extends AppCompatActivity {
 
     private void setUpViews() {
         createFragments(new DateFragment());
+        Intent i = getIntent();
+        styleModel = (ServiceModel) i.getSerializableExtra("serviceModel");
+        BookingModel bookingModel = new BookingModel();
+        bookingModel.setName(styleModel.getName());
+        setStyleName(styleModel.getName());
+
     }
 
     public void createFragments(Fragment fragment) {
@@ -96,11 +106,39 @@ public class BookingActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public String getDateSelected() {
+        return dateSelected;
+    }
+
     public void setDateSelected(String dateSelected) {
         this.dateSelected = dateSelected;
     }
 
-    public String getDateSelected() {
-        return dateSelected;
+    public String getPaymentMode() {
+        return paymentMode;
+    }
+
+    public void setPaymentMode(String paymentMode) {
+        this.paymentMode = paymentMode;
+    }
+
+    public void setDate(String dateSelected) {
+        this.dateSelected = dateSelected;
+    }
+
+    public String getTime() {
+        return timeSelected;
+    }
+
+    public void setTime(String timeSelected) {
+        this.timeSelected = timeSelected;
+    }
+
+    public String getStyleName() {
+        return styleName;
+    }
+
+    public void setStyleName(String styleName) {
+        this.styleName = styleName;
     }
 }

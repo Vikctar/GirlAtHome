@@ -121,7 +121,9 @@ public class StyleDetails extends BaseActivity implements ObservableScrollViewCa
 
     @OnClick(R.id.book)
     void book() {
-        startActivity(new Intent(getApplicationContext(), BookingActivity.class));
+        Intent i = new Intent(getApplicationContext(), BookingActivity.class);
+        i.putExtra("serviceModel", styleModel);
+        startActivity(i);
     }
 
 /*    @OnClick(R.id.view_on_map)

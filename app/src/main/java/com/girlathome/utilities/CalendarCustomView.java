@@ -43,6 +43,7 @@ public class CalendarCustomView extends LinearLayout {
     private Context context;
     private CalendarGridAdapter mAdapter;
 
+    //    private DatabaseQuery mQuery;
     public CalendarCustomView(Context context) {
         super(context);
     }
@@ -68,7 +69,7 @@ public class CalendarCustomView extends LinearLayout {
         previousButton = (ImageView) view.findViewById(R.id.previous_month);
         nextButton = (ImageView) view.findViewById(R.id.next_month);
         currentDate = (TextView) view.findViewById(R.id.display_current_date);
-//        addEventButton = (Button) view.findViewById(R.id.add_calendar_event);
+//        addEventButton = (Button)view.findViewById(R.id.add_calendar_event);
         calendarGridView = (GridView) view.findViewById(R.id.calendar_grid);
     }
 
@@ -125,6 +126,7 @@ public class CalendarCustomView extends LinearLayout {
                     if (next.after(current)) {
                         //The date is future day
                         Log.d("selected_date_1", next + "==" + current + " The date is future day");
+                        ((BookingActivity) context).setDate(dayValue + "/" + displayMonth + "/" + displayYear);
                         ((BookingActivity) context).setDateSelected(dayValue + "/" + correctedMonth + "/" + displayYear);
                         Toast.makeText(context, "Clicked " + dayValue + "/" + displayMonth + "/" + displayYear, Toast.LENGTH_LONG).show();
                         ((BookingActivity) context).createFragments(new TimeFragment());
@@ -139,8 +141,9 @@ public class CalendarCustomView extends LinearLayout {
     }
 
     private void setUpCalendarAdapter() {
-       /* mQuery = new DatabaseQuery(context);
-        List<EventObjects> mEvents = mQuery.getAllFutureEvents();*/
+        dayValueInCells = new ArrayList<Date>();
+//        mQuery = new DatabaseQuery(context);
+//        List<EventObjects> mEvents = mQuery.getAllFutureEvents();
         Calendar mCal = (Calendar) cal.clone();
         mCal.set(Calendar.DAY_OF_MONTH, 1);
         int firstDayOfTheMonth = mCal.get(Calendar.DAY_OF_WEEK) - 1;
@@ -152,7 +155,9 @@ public class CalendarCustomView extends LinearLayout {
         Log.d(TAG, "Number of date " + dayValueInCells.size());
         String sDate = formatter.format(cal.getTime());
         currentDate.setText(sDate);
-        mAdapter = new CalendarGridAdapter(context, dayValueInCells, cal/*, mEvents*/);
+        Calendar todayCalendar = Calendar.getInstance();
+        mAdapter = new CalendarGridAdapter(context, dayValueInCells, cal, todayCalendar);
         calendarGridView.setAdapter(mAdapter);
     }
+
 }

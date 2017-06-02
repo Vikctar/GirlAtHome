@@ -1,23 +1,37 @@
 package com.girlathome.activities;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.app.Activity;
 
 import com.girlathome.R;
+import com.girlathome.adapters.BookingsAdapter;
+import com.girlathome.databaseHandlers.BookingsDB;
+import com.girlathome.models.BookingModel;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
  * Created by steve on 4/16/17.
  */
 public class BookingsFragment extends Fragment {
-    Activity parentActivity;
     private static final String TAG = BookingsFragment.class.getSimpleName();
-
+    Activity parentActivity;
+    @BindView(R.id.bookings_recyclerview)
+    RecyclerView bookingsRecyclerView;
+    List<BookingModel> bookingsModelList = new ArrayList<>();
+    BookingsDB bDb;
 
     public BookingsFragment() {
     }
@@ -44,7 +58,23 @@ public class BookingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: hit");
         View rootView = inflater.inflate(R.layout.bookings_fragment, container, false);
+        ButterKnife.bind(this, rootView);
+        bDb = new BookingsDB(parentActivity);
+        setViews();
         return rootView;
+    }
+
+    private void setViews() {
+
+    }
+
+    private void setUpAdapter() {
+        RecyclerView.LayoutManager stylistLlm = new GridLayoutManager(parentActivity, 2);
+        bookingsRecyclerView.setHasFixedSize(true);
+        bookingsRecyclerView.setLayoutManager(stylistLlm);
+        bookingsRecyclerView.setItemViewCacheSize(bookingsModelList.size());
+        BookingsAdapter bookingsAdapter = new BookingsAdapter(parentActivity, bookingsModelList);
+        bookingsRecyclerView.setAdapter(bookingsAdapter);
     }
 
 
@@ -59,6 +89,16 @@ public class BookingsFragment extends Fragment {
     public void onResume() {
         Log.d(TAG, "onResume: hit");
         super.onResume();
+    }
+
+
+    @Override
+    public void onStart() {
+        Log.d(TAG, "onStart: hit");
+        super.onStart();
+        bookingsModelList = bDb.getAllBookings();
+        Log.d("bookings_size", "="+bookingsModelList.size());
+        setUpAdapter();
     }
 
 
