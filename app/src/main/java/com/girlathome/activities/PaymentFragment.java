@@ -3,42 +3,31 @@ package com.girlathome.activities;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.girlathome.R;
-import com.girlathome.adapters.BookingsAdapter;
-import com.girlathome.databaseHandlers.BookingsDB;
-import com.girlathome.models.BookingModel;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
- * Created by steve on 4/16/17.
+ * Created by steve on 5/23/17.
  */
-public class BookingsFragment extends Fragment {
-    private static final String TAG = BookingsFragment.class.getSimpleName();
+public class PaymentFragment extends Fragment {
+    private static final String TAG = PaymentFragment.class.getSimpleName();
     Activity parentActivity;
-    @BindView(R.id.bookings_recyclerview)
-    RecyclerView bookingsRecyclerView;
-    List<BookingModel> bookingsModelList = new ArrayList<>();
-    BookingsDB bDb;
 
-    public BookingsFragment() {
+
+    public PaymentFragment() {
     }
 
 
-    public static BookingsFragment newInstance() {
-        BookingsFragment fragment = new BookingsFragment();
+    public static PaymentFragment newInstance() {
+        PaymentFragment fragment = new PaymentFragment();
         return fragment;
     }
 
@@ -57,24 +46,27 @@ public class BookingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: hit");
-        View rootView = inflater.inflate(R.layout.bookings_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.payment_fragment_layout, container, false);
         ButterKnife.bind(this, rootView);
-        bDb = new BookingsDB(parentActivity);
-        setViews();
+        //        title
+        ((BookingActivity) parentActivity).setUpTitle(getString(R.string.payment));
         return rootView;
     }
 
-    private void setViews() {
+    @OnClick(R.id.mpesa_layout)
+    void mpesaClicked() {
+        onPaymentSelected("M-Pesa");
+    }
+
+    @OnClick(R.id.cash_layout)
+    void cashClicked() {
+        onPaymentSelected("Cash");
 
     }
 
-    private void setUpAdapter() {
-        RecyclerView.LayoutManager stylistLlm = new GridLayoutManager(parentActivity, 2);
-        bookingsRecyclerView.setHasFixedSize(true);
-        bookingsRecyclerView.setLayoutManager(stylistLlm);
-        bookingsRecyclerView.setItemViewCacheSize(bookingsModelList.size());
-        BookingsAdapter bookingsAdapter = new BookingsAdapter(parentActivity, bookingsModelList);
-        bookingsRecyclerView.setAdapter(bookingsAdapter);
+    private void onPaymentSelected(String payment_mode) {
+        ((BookingActivity) parentActivity).setPaymentMode(payment_mode);
+        ((BookingActivity) parentActivity).createFragments(new ConfirmBookingFragment());
     }
 
 
@@ -89,16 +81,6 @@ public class BookingsFragment extends Fragment {
     public void onResume() {
         Log.d(TAG, "onResume: hit");
         super.onResume();
-    }
-
-
-    @Override
-    public void onStart() {
-        Log.d(TAG, "onStart: hit");
-        super.onStart();
-        bookingsModelList = bDb.getAllBookings();
-        Log.d("bookings_size", "="+bookingsModelList.size());
-        setUpAdapter();
     }
 
 

@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity
                 break;
 
         }
-        Toast.makeText(this, activity_started + title + " selected -> " + position, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, activity_started + title + " selected -> " + position, Toast.LENGTH_SHORT).show();
 //        if (position != 7) {
 //            createFragments(fragment, title);
 //        }
@@ -159,6 +159,7 @@ public class MainActivity extends AppCompatActivity
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.main, menu);
             itemCart = menu.findItem(R.id.action_booking);
+            itemCart.setVisible(false);
 
             icon = (LayerDrawable) itemCart.getIcon();
             setBadgeCount(MainActivity.this, icon);

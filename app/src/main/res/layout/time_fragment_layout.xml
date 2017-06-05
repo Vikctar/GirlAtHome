@@ -3,36 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/grey_lighter"
+    android:orientation="vertical"
+    android:weightSum="2">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="10dp">
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/what_time"
+            android:textColor="@color/grey_2"
+            android:textSize="22sp"
+            app:typeface="NirmalaB.ttf" />
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:paddingTop="10dp">
-
-                <com.ctrlplusz.anytextview.AnyTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:gravity="center"
-                    android:text="@string/what_time"
-                    android:textColor="@color/grey_2"
-                    android:textSize="22sp"
-                    app:typeface="NirmalaB.ttf" />
-            </RelativeLayout>
 
             <com.ctrlplusz.anytextview.AnyTextView
                 android:id="@+id/am_title"
@@ -50,7 +54,8 @@
             <com.girlathome.utilities.InnerGridView
                 android:id="@+id/am_grid_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:columnWidth="60dp"
                 android:gravity="center"
                 android:numColumns="auto_fit"
@@ -73,7 +78,8 @@
             <com.girlathome.utilities.InnerGridView
                 android:id="@+id/pm_grid_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:columnWidth="60dp"
                 android:gravity="center"
                 android:numColumns="auto_fit"

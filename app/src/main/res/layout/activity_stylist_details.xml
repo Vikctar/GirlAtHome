@@ -78,7 +78,8 @@
         android:text="@string/book_me"
         android:textAllCaps="true"
         android:textColor="@color/white"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
     <FrameLayout
         android:id="@+id/container_body"
