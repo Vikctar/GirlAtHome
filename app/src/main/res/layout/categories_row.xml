@@ -6,19 +6,26 @@
     android:orientation="vertical"
     android:padding="7dp">
 
-
-    <ImageView
+    <com.pkmmte.view.CircularImageView
         android:id="@+id/avatar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/image_placeholder" />
+        android:src="@drawable/image_placeholder"
+        app:border="false" />
+    <!-- <ImageView
+         android:id="@+id/avatar"
+         android:layout_width="100dp"
+         android:layout_height="100dp"
+         android:scaleType="centerCrop"
+         android:src="@drawable/image_placeholder" />-->
 
     <com.ctrlplusz.anytextview.AnyTextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
         android:text="Name"
         android:textColor="@color/black"
         android:textSize="15sp"

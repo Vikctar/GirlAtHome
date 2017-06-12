@@ -13,15 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.girlathome.R;
 import com.girlathome.databaseHandlers.BookingsDB;
+import com.girlathome.utilities.ScheduleClient;
+import com.girlathome.utilities.TimeTask;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,6 +43,9 @@ public class ConfirmBookingFragment extends Fragment {
     TextView tvTimeDateSelected;
     String message, paymentMode, timeSelected, dateSelected, styleName;
     BookingsDB bDb;
+    TimeTask timeTask;
+    // This is a handle so that we can call methods on our service
+    private ScheduleClient scheduleClient;
 
 
     public ConfirmBookingFragment() {
@@ -75,6 +76,10 @@ public class ConfirmBookingFragment extends Fragment {
 //        title
         ((BookingActivity) parentActivity).setUpTitle(getString(R.string.confirm_booking));
         bDb = new BookingsDB(parentActivity);
+        // Create a new service client and bind our activity to this service
+        scheduleClient = new ScheduleClient(parentActivity);
+        scheduleClient.doBindService();
+        timeTask = new TimeTask();
         setViews();
         return rootView;
     }
@@ -92,34 +97,33 @@ public class ConfirmBookingFragment extends Fragment {
         }
         tvTimeDateSelected.setText(timeSelected + " " + dateSelected);
         try {
-            tvTimeDateSelected.setText(formatDateTime(dateSelected + " " + timeSelected));
+            tvTimeDateSelected.setText(timeTask.formatIntoDayOfWeek(dateSelected + " " + timeSelected));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         styleName = ((BookingActivity) parentActivity).getStyleName();
     }
 
-    private String formatDateTime(String strCurrentDate) throws ParseException {
-       /* String strCurrentDate = "Wed, 18 Apr 2012 07:55:29 +0000";
-        SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy hh:mm:ss Z");
-        Date newDate = format.parse(strCurrentDate);
-
-        format = new SimpleDateFormat("MMM dd,yyyy hh:mm a");
-        String date = format.format(newDate);*/
-
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy hh:mm a", Locale.ENGLISH);
-        Date newDate = format.parse(strCurrentDate);
-
-        format = new SimpleDateFormat("EEE, dd MMM yyyy hh:mm a", Locale.ENGLISH);
-        return format.format(newDate);
-    }
-
 
     @OnClick(R.id.done)
     void addAppointment() {
-        bDb.addAppointment(0, "", "", styleName, "", "", dateSelected, timeSelected, "", "", "", message);
-        Toast.makeText(parentActivity, "Successfully booked an appointment!", Toast.LENGTH_SHORT).show();
-        parentActivity.finish();
+
+        try {
+            bDb.addAppointment(0, "", "", styleName, "", "", dateSelected, timeSelected,
+                    timeTask.formatInto24HRS(dateSelected + " " + timeSelected), "", "", "", message);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        /*
+        bDb.addAppointment(0, "", "", styleName, "", "", dateSelected, timeSelected,
+                dateSelected +" "+ timeSelected, "", "", "", message);*/
+        ((BookingActivity) parentActivity).createFragments(new BookingAccepted());
+//        Toast.makeText(parentActivity, "Successfully booked an appointment!", Toast.LENGTH_LONG).show();
+
+        /*Intent intent = new Intent(getActivity(), Login.class);
+        intent.putExtra("loginOut", message);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);*/
     }
 
     @OnClick(R.id.add_note_layout)

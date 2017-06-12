@@ -1,23 +1,32 @@
 package com.girlathome.activities;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.app.Activity;
 
 import com.girlathome.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
  * Created by steve on 4/16/17.
  */
 public class FavouritesFragment extends Fragment {
-    Activity parentActivity;
     private static final String TAG = FavouritesFragment.class.getSimpleName();
-
+    Activity parentActivity;
+    @BindView(R.id.type_of_favourite_recyclerview)
+    RecyclerView typeOfFavouriteRecyclerView;
+    List<String> typeOfFavouriteModelList = new ArrayList<>();
 
     public FavouritesFragment() {
     }
@@ -44,9 +53,28 @@ public class FavouritesFragment extends Fragment {
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: hit");
         View rootView = inflater.inflate(R.layout.favourites_fragment, container, false);
+        ButterKnife.bind(this, rootView);
+        setViews();
         return rootView;
     }
 
+    private void setViews() {
+        for (int i = 0; i < 4; i++) {
+            typeOfFavouriteModelList.add("");
+        }
+
+        setUpAdapter();
+    }
+
+    private void setUpAdapter() {
+
+      /*  RecyclerView.LayoutManager stylistLlm = new GridLayoutManager(parentActivity, 2);
+        typeOfFavouriteRecyclerView.setHasFixedSize(true);
+        typeOfFavouriteRecyclerView.setLayoutManager(stylistLlm);
+        typeOfFavouriteRecyclerView.setItemViewCacheSize(typeOfFavouriteModelList.size());
+        StylesAdapter stylesAdapter = new StylesAdapter(parentActivity, typeOfFavouriteModelList, "gallery");
+        typeOfFavouriteRecyclerView.setAdapter(stylesAdapter);*/
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

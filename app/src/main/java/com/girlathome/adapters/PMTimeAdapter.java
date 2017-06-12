@@ -58,20 +58,57 @@ public class PMTimeAdapter extends BaseAdapter {
             convertView.setTag(holder);
         } else {
             holder = (PMTimeAdapter.ViewHolder) convertView.getTag();
-        }
 
+        }
+        holder.text.setText(mData.get(position));
+        //style the time
+        //if its today
+        if (dateSelected.equalsIgnoreCase(getDate())) {
+            Log.d("date_selected", "today");
+            //disable previous hours if we're in the afternoon
+            if (daytime_variant.equalsIgnoreCase("pm")) {
+                Log.d("date_selected", "today" + daytime_variant);
+                if (Integer.valueOf(mData.get(position)) == 12) {
+                    holder.text.setTextColor(mActivity.getResources().getColor(R.color.grey_2));
+                    Log.d("date_selected", "== 12");
+                } else {
+                    Log.d("date_selected", "else 12");
+                    holder.text.setTextColor(mActivity.getResources().getColor(R.color.darkAccent));
+                    holder.text.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mListener.onPMClick(position, mData.get(position), "pm");
+                        }
+                    });
+                }
+            } else {
+                holder.text.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mListener.onPMClick(position, mData.get(position), "pm");
+                    }
+                });
+            }
+        }
+     /*
         holder.text.setText(mData.get(position));
 //if its today
         if (dateSelected.equalsIgnoreCase(getDate())) {
+            Log.d("date_selected", "today");
 //        disable previous hours if we're in the afternoon
             if (daytime_variant.equalsIgnoreCase("pm")) {
+                Log.d("date_selected", "afternoon");
                 if (Integer.valueOf(hour_variant) >= Integer.valueOf(mData.get(position))) {
 //            means current time is past the current value
+                    Log.d("date_selected", "current time is past the current value");
                     holder.text.setTextColor(mActivity.getResources().getColor(R.color.grey_2));
                 } else {
+
                     if (Integer.valueOf(mData.get(position)) == 12) {
                         holder.text.setTextColor(mActivity.getResources().getColor(R.color.grey_2));
+                        Log.d("date_selected", "== 12");
                     } else {
+                        Log.d("date_selected", "else 12");
                         holder.text.setTextColor(mActivity.getResources().getColor(R.color.darkAccent));
                         //set listener for enabled hours
                         holder.text.setOnClickListener(new View.OnClickListener() {
@@ -89,11 +126,11 @@ public class PMTimeAdapter extends BaseAdapter {
             holder.text.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mListener.onPMClick(position, mData.get(position), daytime_variant);
-//                            Toast.makeText(mActivity, "Clicked " + mData.get(position) + " " + daytime_variant, Toast.LENGTH_LONG).show();
+                    mListener.onPMClick(position, mData.get(position), "pm");
+                    Toast.makeText(mActivity, "Clicked " + mData.get(position) + " " + daytime_variant, Toast.LENGTH_LONG).show();
                 }
             });
-        }
+        }*/
 
         return convertView;
     }

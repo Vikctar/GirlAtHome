@@ -1,8 +1,8 @@
 package com.girlathome.activities;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,19 +15,19 @@ import butterknife.OnClick;
 
 
 /**
- * Created by steve on 5/14/17.
+ * Created by steve on 6/4/17.
  */
-public class MapFragment extends Fragment {
-    private static final String TAG = MapFragment.class.getSimpleName();
+public class BookingAccepted extends Fragment {
+    private static final String TAG = BookingAccepted.class.getSimpleName();
     Activity parentActivity;
 
 
-    public MapFragment() {
+    public BookingAccepted() {
     }
 
 
-    public static MapFragment newInstance() {
-        MapFragment fragment = new MapFragment();
+    public static BookingAccepted newInstance() {
+        BookingAccepted fragment = new BookingAccepted();
         return fragment;
     }
 
@@ -46,15 +46,20 @@ public class MapFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: hit");
-        View rootView = inflater.inflate(R.layout.map_fragment_layout, container, false);
+        View rootView = inflater.inflate(R.layout.booking_accepted__fragment, container, false);
         ButterKnife.bind(this, rootView);
+        ((BookingActivity) parentActivity).setUpTitle("");
         return rootView;
     }
 
-    //    cancel
-    @OnClick(R.id.cancel)
-    void closeFragment() {
-        ((StylistDetails) parentActivity).createFragments(new EmptyFragment(), "empty");
+    @OnClick(R.id.my_bookings)
+    void goToBookings() {
+        parentActivity.finish();
+    }
+
+    @OnClick(R.id.explore)
+    void goToExplore() {
+        parentActivity.finish();
     }
 
     @Override

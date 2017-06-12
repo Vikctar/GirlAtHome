@@ -7,6 +7,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
+        android:scrollbars="none"
         android:layout_height="wrap_content">
 
         <RelativeLayout
@@ -17,7 +18,12 @@
                 android:layout_width="@dimen/navigation_drawer_width"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/header_bg_4" />
+                android:src="@drawable/header_bg_5" />
+
+            <ImageView
+                android:layout_width="@dimen/navigation_drawer_width"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop" />
             <!--sign up button-->
             <Button
                 android:id="@+id/sign_join"
@@ -36,16 +42,16 @@
             <!--profile image-->
             <com.pkmmte.view.CircularImageView
                 android:id="@+id/prof_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="105dp"
+                android:layout_marginTop="115dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_person"
                 app:border="true"
                 app:border_color="@color/grey_lighter"
-                app:border_width="4dp" />
+                app:border_width="2dp" />
 
             <LinearLayout
                 android:id="@+id/name_container"
@@ -55,7 +61,7 @@
                 android:layout_marginTop="105dp"
                 android:layout_toRightOf="@+id/prof_image"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="invisible">
                 <!--profile name-->
                 <com.ctrlplusz.anytextview.AnyTextView
                     android:id="@+id/name"
@@ -94,8 +100,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:layout_marginBottom="15dp"
-                    android:clickable="true"
-                    android:scrollbars="vertical" />
+                    android:clickable="true" />
 
             </RelativeLayout>
         </RelativeLayout>

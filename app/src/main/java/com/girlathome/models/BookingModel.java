@@ -11,6 +11,7 @@ public class BookingModel {
     private String styleType;
     private String date;
     private String time;
+    private String dateTime;
 
     public String getName() {
         return name;
@@ -24,15 +25,23 @@ public class BookingModel {
         this.id = id;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public void setTime(String time) {
         this.time = time;
     }
 
     public String getDate() {
         return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public String getDateTime() {
+        return dateTime;
     }
 }
