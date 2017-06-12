@@ -68,19 +68,27 @@ public class PMTimeAdapter extends BaseAdapter {
             //disable previous hours if we're in the afternoon
             if (daytime_variant.equalsIgnoreCase("pm")) {
                 Log.d("date_selected", "today" + daytime_variant);
-                if (Integer.valueOf(mData.get(position)) == 12) {
+                if (Integer.valueOf(mData.get(position)) <= Integer.valueOf(hour_variant)) { //disable previous dates
+                    Log.d("date_selected_1", "this");
                     holder.text.setTextColor(mActivity.getResources().getColor(R.color.grey_2));
-                    Log.d("date_selected", "== 12");
+
                 } else {
-                    Log.d("date_selected", "else 12");
-                    holder.text.setTextColor(mActivity.getResources().getColor(R.color.darkAccent));
-                    holder.text.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            mListener.onPMClick(position, mData.get(position), "pm");
-                        }
-                    });
+                    if (Integer.valueOf(mData.get(position)) == 12) {
+                        Log.d("date_selected_3", "== 12");
+                        holder.text.setTextColor(mActivity.getResources().getColor(R.color.grey_2));
+                    } else {
+                        holder.text.setTextColor(mActivity.getResources().getColor(R.color.darkAccent));
+                        holder.text.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                mListener.onPMClick(position, mData.get(position), "pm");
+                            }
+                        });
+                    }
+
                 }
+
+
             } else {
                 holder.text.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -89,6 +97,13 @@ public class PMTimeAdapter extends BaseAdapter {
                     }
                 });
             }
+        } else {
+            holder.text.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mListener.onPMClick(position, mData.get(position), "pm");
+                }
+            });
         }
      /*
         holder.text.setText(mData.get(position));

@@ -16,7 +16,6 @@ import java.util.ArrayList;
  */
 
 public class BookingsDB extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "bookingsDB";
     public static final String TABLE_NAME = "upcomingAppointmentsTable";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_STYLE_ID = "style_id";
@@ -32,7 +31,7 @@ public class BookingsDB extends SQLiteOpenHelper {
     public static final String COLUMN_PAYMENT_STATUS = "payment_status";
     public static final String COLUMN_APPOINTMENT_STATUS = "appointment_status";
     public static final String COLUMN_NOTE = "note_message";
-
+    private static final String DATABASE_NAME = "bookingsDB";
     // Database Version
     private static final int DATABASE_VERSION = 3;
 
@@ -96,15 +95,14 @@ public class BookingsDB extends SQLiteOpenHelper {
     public ArrayList<BookingModel> getAllBookings() {
         ArrayList<BookingModel> bookingModelArrayList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from upcomingAppointmentsTable ORDER BY datetime(date_time) DESC", null);
+        Cursor res = db.rawQuery("SELECT  * FROM " + TABLE_NAME + " ORDER BY datetime(date_time) DESC", null);
         res.moveToFirst();
         while (!res.isAfterLast()) {
             BookingModel bookingModel = new BookingModel();
             bookingModel.setId(res.getInt(res
                     .getColumnIndex("style_id")));
             bookingModel.setName(res.getString(res.getColumnIndex("style_name")));
-            Log.d("bookings_db", "==" + bookingModel.getName() +
-                    res.getString(res.getColumnIndex("date")) + res.getString(res.getColumnIndex("time")));
+            Log.d("bookings_db", "=="+ res.getString(res.getColumnIndex("date_time")));
             bookingModel.setDate(res.getString(res.getColumnIndex("date")));
             bookingModel.setTime(res.getString(res.getColumnIndex("time")));
             bookingModel.setDateTime(res.getString(res.getColumnIndex("date_time")));
