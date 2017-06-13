@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:foobar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--notifications or not-->
+    <RelativeLayout
+        android:id="@+id/notifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:paddingLeft="5dp">
+
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/tv_notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="7dp"
+            android:text="@string/notifications"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            foobar:typeface="NirmalaB.ttf" />
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_notifications"
+            android:layout_below="@+id/tv_notifications"
+            android:layout_marginBottom="10dip"
+            android:layout_marginRight="5dip"
+            android:layout_marginTop="5dip"
+            android:text="@string/notifications_details"
+            android:textColor="@color/grey"
+            android:textSize="14sp"
+            foobar:typeface="Nirmala.ttf" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="7dp"
+        android:layout_below="@+id/style_details"
+        android:layout_marginBottom="10dp"
+        android:background="@color/grey_lighter" />
+    <!-- <RelativeLayout
+         android:id="@+id/notifications"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="10dp"
+         android:background="?android:attr/selectableItemBackground"
+         android:clickable="true"
+         android:paddingLeft="5dp">
+
+
+         <com.ctrlplusz.anytextview.AnyTextView
+             android:id="@+id/tv_notifications"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:layout_marginTop="7dp"
+             android:text="@string/notifications"
+             android:textColor="@color/black"
+             android:textSize="18sp"
+             foobar:typeface="Nirmala.ttf" />
+
+         <com.ctrlplusz.anytextview.AnyTextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignLeft="@+id/tv_notifications"
+             android:layout_below="@+id/tv_notifications"
+             android:layout_marginBottom="10dip"
+             android:layout_marginRight="5dip"
+             android:layout_marginTop="5dip"
+             android:text="@string/notifications_details"
+             android:textColor="@color/grey"
+             android:textSize="14sp"
+             foobar:typeface="Roboto-Light.ttf" />
+
+         <CheckBox
+             android:id="@+id/notifications_chek"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentEnd="true"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginEnd="20dp"
+             android:layout_marginRight="20dp"
+             android:checked="true" />
+
+         <View
+             android:layout_width="0dp"
+             android:layout_height="0dp" />
+     </RelativeLayout>
+ -->
+</LinearLayout>

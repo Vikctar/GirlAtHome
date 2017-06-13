@@ -13,7 +13,9 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
+    <!-- permission required to use Alarm Manager -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -62,6 +64,9 @@
         <service android:name=".utilities.NotifyService" />
         <service android:name=".utilities.MyAlarmService" />
 
+        <receiver android:name=".utilities.AlarmReciever" />
+
+        <activity android:name=".activities.FavouritesList"></activity>
     </application>
 
 </manifest>

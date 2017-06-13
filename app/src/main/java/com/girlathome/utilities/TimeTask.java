@@ -12,49 +12,14 @@ import java.util.Locale;
  */
 
 public class TimeTask {
-    public static String getCurrentTimeStamp24HRS() {
+    public String getCurrentTimeStamp24HRS() {
         SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");//dd/MM/yyyy
         Date now = new Date();
         return sdfDate.format(now);
     }
 
     public String dateTimeDifference(String dateTime) {
-//        Timer updateTimer = new Timer();
-//        updateTimer.schedule(new TimerTask() {
-//            public void run() {
-/*        String dateTimeDiff = "0";
-        try {
 
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//            format.setTimeZone(TimeZone.getTimeZone("GMT"));
-            Date Date1 = format.parse(getCurrentTimeStamp());
-            Date Date2 = format.parse(dateTime);
-            long diff = Date1.getTime() - Date2.getTime();
-            Log.v("Data1", "" + Date1.getTime() + "/" + getCurrentTimeStamp());
-            Log.v("Data2", "" + Date2.getTime() + "/" + dateTime);
-            int diffMinutes = (int) diff / (60 * 1000) % 60;
-            int diffHours = (int) diff / (60 * 60 * 1000) % 24;
-            int diffDays = (int) diff / (24 * 60 * 60 * 1000);
-
-            dateTimeDiff = diffHours + ":" + diffMinutes;
-            if (diffDays > 1) {
-                System.err.println("Difference in number of days (2) : " + diffDays);
-                dateTimeDiff = diffDays + " days";
-
-            } else if (diffHours > 24) {
-                System.err.println(">24");
-                dateTimeDiff = diffHours + " hours";
-
-            } else if ((diffHours == 24) && (diffMinutes >= 1)) {
-                System.err.println("minutes");
-                dateTimeDiff = diffMinutes + " min";
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }*/
         String dateStart = getCurrentTimeStamp24HRS();
         String dateStop = dateTime;
         String dateTimeDiff = "0";

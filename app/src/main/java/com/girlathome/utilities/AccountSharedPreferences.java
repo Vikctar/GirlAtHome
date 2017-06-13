@@ -62,4 +62,21 @@ public class AccountSharedPreferences {
         editor.apply();
     }
 
+    public String getTimeForEarlyNotification() {
+        return sharedPreferences.getString("time_for_early_notification", "15 mins before");
+    }
+
+    public void setTimeForEarlyNotification(String timeForEarlyNotification) {
+        editor.putString("time_for_early_notification", timeForEarlyNotification);
+        editor.apply();
+    }
+
+    public long getTimeMillsForEarlyNotification() {
+        return sharedPreferences.getLong("time_mills_for_early_notification", 900000);
+    }
+
+    public void setTimeMillsForEarlyNotification(long timeMillsForEarlyNotification) {
+        editor.putLong("time_mills_for_early_notification", timeMillsForEarlyNotification);
+        editor.apply();
+    }
 }

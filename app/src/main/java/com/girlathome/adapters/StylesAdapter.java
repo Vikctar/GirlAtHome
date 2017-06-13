@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.girlathome.R;
 import com.girlathome.activities.StyleDetails;
+import com.girlathome.databaseHandlers.FavouritesDB;
 import com.girlathome.models.ServiceModel;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -30,6 +31,7 @@ public class StylesAdapter extends RecyclerView.Adapter<StylesAdapter.ViewHolder
 
     private static final String TAG = StylesAdapter.class.getSimpleName();
     String layout_variant;
+    FavouritesDB favouritesDB;
     private Context mContext;
     private List<ServiceModel> mData;
     private DisplayImageOptions options;
@@ -58,6 +60,7 @@ public class StylesAdapter extends RecyclerView.Adapter<StylesAdapter.ViewHolder
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
         this.layout_variant = layout_variant;
+        favouritesDB = new FavouritesDB(context);
     }
 
 
@@ -99,6 +102,8 @@ public class StylesAdapter extends RecyclerView.Adapter<StylesAdapter.ViewHolder
             @Override
             public void onClick(View view) {
                 holder.favImageView.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_selected_wish));
+                favouritesDB.addFavouriteStyle(serviceModel.getId(), "", "",
+                        serviceModel.getName(), serviceModel.getPrice(), "", "", "", "");
             }
         });
        /* holder.wishListImageView.setOnClickListener(new View.OnClickListener() {

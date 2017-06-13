@@ -124,4 +124,11 @@
     <string name="empty_history_sub_title">Appointments you have previously booked will be listed here.</string>
     <string name="available_services">Available services</string>
     <string name="details">Details</string>
+    <string name="notifications">Notifications</string>
+    <string name="notifications_details">Toggle app notifications</string>
+    <string name="appointment_notifications">Upcoming appointments</string>
+    <string name="appointment_notifications_details">Get notified when an appointment is due</string>
+    <string name="early_notifications">Notify before appointment is due</string>
+    <string name="favourites_styles">Favourite Styles</string>
+    <string name="notifications_settings">Notificatons Settings</string>
 </resources>

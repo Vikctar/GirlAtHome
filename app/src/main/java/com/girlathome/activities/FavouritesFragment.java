@@ -3,6 +3,7 @@ package com.girlathome.activities;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.girlathome.R;
+import com.girlathome.adapters.FavouriteCategories;
+import com.girlathome.databaseHandlers.FavouritesDB;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +30,7 @@ public class FavouritesFragment extends Fragment {
     @BindView(R.id.type_of_favourite_recyclerview)
     RecyclerView typeOfFavouriteRecyclerView;
     List<String> typeOfFavouriteModelList = new ArrayList<>();
+    FavouritesDB favouritesDB;
 
     public FavouritesFragment() {
     }
@@ -54,26 +58,31 @@ public class FavouritesFragment extends Fragment {
         Log.d(TAG, "onCreateView: hit");
         View rootView = inflater.inflate(R.layout.favourites_fragment, container, false);
         ButterKnife.bind(this, rootView);
+        favouritesDB = new FavouritesDB(parentActivity);
         setViews();
         return rootView;
     }
 
     private void setViews() {
-        for (int i = 0; i < 4; i++) {
-            typeOfFavouriteModelList.add("");
+//        for (int i = 0; i < 4; i++) {
+//            typeOfFavouriteModelList.add("");
+//        }
+        if (favouritesDB.getStylesCount() > 0) {
+            typeOfFavouriteModelList.add(favouritesDB.getStylesCount() + " styles");
         }
-
+        if (favouritesDB.getStylistsCount() > 0) {
+            typeOfFavouriteModelList.add("" + favouritesDB.getStylistsCount() + " stylists");
+        }
         setUpAdapter();
     }
 
     private void setUpAdapter() {
-
-      /*  RecyclerView.LayoutManager stylistLlm = new GridLayoutManager(parentActivity, 2);
+        RecyclerView.LayoutManager stylistLlm = new GridLayoutManager(parentActivity, 2);
         typeOfFavouriteRecyclerView.setHasFixedSize(true);
         typeOfFavouriteRecyclerView.setLayoutManager(stylistLlm);
         typeOfFavouriteRecyclerView.setItemViewCacheSize(typeOfFavouriteModelList.size());
-        StylesAdapter stylesAdapter = new StylesAdapter(parentActivity, typeOfFavouriteModelList, "gallery");
-        typeOfFavouriteRecyclerView.setAdapter(stylesAdapter);*/
+        FavouriteCategories favouriteCategories = new FavouriteCategories(parentActivity, typeOfFavouriteModelList);
+        typeOfFavouriteRecyclerView.setAdapter(favouriteCategories);
     }
 
     @Override

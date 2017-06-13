@@ -1,7 +1,11 @@
 package com.girlathome.activities;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -13,13 +17,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.girlathome.R;
 import com.girlathome.databaseHandlers.BookingsDB;
-import com.girlathome.utilities.ScheduleClient;
+import com.girlathome.utilities.AccountSharedPreferences;
+import com.girlathome.utilities.AlarmReciever;
 import com.girlathome.utilities.TimeTask;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,9 +52,8 @@ public class ConfirmBookingFragment extends Fragment {
     String message, paymentMode, timeSelected, dateSelected, styleName;
     BookingsDB bDb;
     TimeTask timeTask;
-    // This is a handle so that we can call methods on our service
-    private ScheduleClient scheduleClient;
-
+    AccountSharedPreferences asp;
+    int minutes;
 
     public ConfirmBookingFragment() {
     }
@@ -76,9 +83,7 @@ public class ConfirmBookingFragment extends Fragment {
 //        title
         ((BookingActivity) parentActivity).setUpTitle(getString(R.string.confirm_booking));
         bDb = new BookingsDB(parentActivity);
-        // Create a new service client and bind our activity to this service
-        scheduleClient = new ScheduleClient(parentActivity);
-        scheduleClient.doBindService();
+        asp = new AccountSharedPreferences(parentActivity);
         timeTask = new TimeTask();
         setViews();
         return rootView;
@@ -102,6 +107,10 @@ public class ConfirmBookingFragment extends Fragment {
             e.printStackTrace();
         }
         styleName = ((BookingActivity) parentActivity).getStyleName();
+
+        //get minutes to show notification before
+        minutes = (int) (asp.getTimeMillsForEarlyNotification() / 60) / 1000;
+
     }
 
 
@@ -111,12 +120,11 @@ public class ConfirmBookingFragment extends Fragment {
         try {
             bDb.addAppointment(0, "", "", styleName, "", "", dateSelected, timeSelected,
                     timeTask.formatInto24HRS(dateSelected + " " + timeSelected), "", "", "", message);
+            setAlarmTime();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        /*
-        bDb.addAppointment(0, "", "", styleName, "", "", dateSelected, timeSelected,
-                dateSelected +" "+ timeSelected, "", "", "", message);*/
+
         ((BookingActivity) parentActivity).createFragments(new BookingAccepted());
 //        Toast.makeText(parentActivity, "Successfully booked an appointment!", Toast.LENGTH_LONG).show();
 
@@ -124,6 +132,25 @@ public class ConfirmBookingFragment extends Fragment {
         intent.putExtra("loginOut", message);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);*/
+    }
+
+    public void setAlarmTime() throws ParseException {
+        // time at which alarm will be scheduled here alarm is scheduled at 1 day from current time,
+        // we fetch time in milliseconds
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = (Date) formatter.parse(timeTask.formatInto24HRS(dateSelected + " " + timeSelected));
+        long time = date.getTime() - asp.getTimeMillsForEarlyNotification();
+        // create an Intent and set the class which will execute when Alarm triggers, here we have
+        // given AlarmReciever in the Intent, the onRecieve() method of this class will execute when
+        // alarm triggers
+        Intent intentAlarm = new Intent(parentActivity, AlarmReciever.class);
+        intentAlarm.putExtra("minutes_before_notification", minutes);
+        // create the object
+        AlarmManager alarmManager = (AlarmManager) parentActivity.getSystemService(Context.ALARM_SERVICE);
+        final int broadcast_id = (int) System.currentTimeMillis();
+        //set the alarm for particular time
+        alarmManager.set(AlarmManager.RTC_WAKEUP, time, PendingIntent.getBroadcast(parentActivity, broadcast_id, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
+        Toast.makeText(parentActivity, "You will be notified", Toast.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.add_note_layout)
