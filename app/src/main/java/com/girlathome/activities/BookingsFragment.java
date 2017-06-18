@@ -2,18 +2,17 @@ package com.girlathome.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.girlathome.R;
-import com.girlathome.adapters.BookingsAdapter;
-import com.girlathome.databaseHandlers.BookingsDB;
-import com.girlathome.models.BookingModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +26,13 @@ import butterknife.ButterKnife;
  */
 public class BookingsFragment extends Fragment {
     private static final String TAG = BookingsFragment.class.getSimpleName();
-    Activity parentActivity;
-    @BindView(R.id.bookings_recyclerview)
-    RecyclerView bookingsRecyclerView;
-    List<BookingModel> bookingsModelList = new ArrayList<>();
-    BookingsDB bDb;
+    Activity parentActivity;/*
+    @BindView(R.id.tabs)
+    RecyclerView bookingsRecyclerView;*/
+    @BindView(R.id.tabs)
+    TabLayout tabLayout;
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
 
     public BookingsFragment() {
     }
@@ -59,24 +60,23 @@ public class BookingsFragment extends Fragment {
         Log.d(TAG, "onCreateView: hit");
         View rootView = inflater.inflate(R.layout.bookings_fragment, container, false);
         ButterKnife.bind(this, rootView);
-        bDb = new BookingsDB(parentActivity);
         setViews();
         return rootView;
     }
 
     private void setViews() {
-
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabTextColors(getResources().getColor(R.color.colorPrimaryLight), getResources().getColor(R.color.white));
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.mauvre));
     }
 
-    private void setUpAdapter() {
-        RecyclerView.LayoutManager stylistLlm = new GridLayoutManager(parentActivity, 2);
-        bookingsRecyclerView.setHasFixedSize(true);
-        bookingsRecyclerView.setLayoutManager(stylistLlm);
-        bookingsRecyclerView.setItemViewCacheSize(bookingsModelList.size());
-        BookingsAdapter bookingsAdapter = new BookingsAdapter(parentActivity, bookingsModelList);
-        bookingsRecyclerView.setAdapter(bookingsAdapter);
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
+        adapter.addFragment(new UpcomingAppointments(), "Upcoming");
+        adapter.addFragment(new HistoryAppointments(), "History");
+        viewPager.setAdapter(adapter);
     }
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -84,23 +84,18 @@ public class BookingsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-
     @Override
     public void onResume() {
         Log.d(TAG, "onResume: hit");
         super.onResume();
     }
 
-
     @Override
     public void onStart() {
         Log.d(TAG, "onStart: hit");
         super.onStart();
-        bookingsModelList = bDb.getAllBookings();
-        Log.d("bookings_size", "="+bookingsModelList.size());
-        setUpAdapter();
-    }
 
+    }
 
     @Override
     public void onPause() {
@@ -108,13 +103,11 @@ public class BookingsFragment extends Fragment {
         super.onPause();
     }
 
-
     @Override
     public void onDestroyView() {
         Log.d(TAG, "onDestroyView: hit");
         super.onDestroyView();
     }
-
 
     @Override
     public void onDestroy() {
@@ -126,5 +119,34 @@ public class BookingsFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         parentActivity = activity;
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 } 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.girlathome.R;
 import com.girlathome.models.CategoriesModel;
+import com.pkmmte.view.CircularImageView;
 
 import java.util.List;
 
@@ -73,7 +74,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // include {@link View} components here
         @BindView(R.id.avatar)
-        ImageView avatarImageView;
+        CircularImageView avatarImageView;
         /*@BindView(R.id.wishlist_icon)
         ImageView wishListImageView;*/
         @BindView(R.id.name)

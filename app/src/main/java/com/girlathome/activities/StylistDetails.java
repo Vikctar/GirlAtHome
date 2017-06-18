@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +37,7 @@ public class StylistDetails extends BaseActivity implements ObservableScrollView
     TextView tvMemberSince;
     StylistModel stylistModel;
     FragmentTransaction fragmentTransaction;
+    android.app.FragmentManager fragmentManager;
     private View mImageView;
     private View mToolbarView;
     private ObservableScrollView mScrollView;
@@ -67,7 +69,7 @@ public class StylistDetails extends BaseActivity implements ObservableScrollView
 
         tvName.setText(stylistModel.getName());
 //        tvMemberSince.setText(getString(R.string.member_since) + " " + stylistModel.getCreated_at());
-        createFragments(new EmptyFragment());
+        createFragments(new EmptyFragment(), "empty");
     }
 
     String getMemberSinceData(String dataString) throws ParseException {
@@ -82,7 +84,10 @@ public class StylistDetails extends BaseActivity implements ObservableScrollView
 
     @OnClick(R.id.book)
     void book() {
-        startActivity(new Intent(getApplicationContext(), BookingActivity.class));
+        /*Intent i = new Intent(getApplicationContext(), BookingActivity.class);
+        i.putExtra("serviceModel", stylistModel);
+        startActivity(i);*/
+        createFragments(new StylesAvailableFragment(), "available");
     }
 
     @OnClick(R.id.view_on_map)
@@ -92,14 +97,14 @@ public class StylistDetails extends BaseActivity implements ObservableScrollView
     }
 
 
-    public void createFragments(Fragment fragment) {
-        android.app.FragmentManager fragmentManager = getFragmentManager();
+    public void createFragments(Fragment fragment, String tag) {
+        fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.animator.slide_up,
                 R.animator.slide_down,
                 R.animator.slide_up,
                 R.animator.slide_down);
-        fragmentTransaction.replace(R.id.container_body, fragment);
+        fragmentTransaction.replace(R.id.container_body, fragment,tag);
         //fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -145,4 +150,15 @@ public class StylistDetails extends BaseActivity implements ObservableScrollView
     public void onUpOrCancelMotionEvent(ScrollState scrollState) {
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        Fragment currentFragment = fragmentManager.findFragmentByTag("empty");
+        if (currentFragment != null) {
+            finish();
+        } else {
+            createFragments(new EmptyFragment(), "empty");
+        }
+
+        return true;
+    }
 }

@@ -61,6 +61,7 @@ public class StylistAdapter extends RecyclerView.Adapter<StylistAdapter.ViewHold
                 .considerExifParams(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
+        Log.d("stylists_3", mData.size() + "");
     }
 
 

@@ -11,7 +11,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
+    <!-- permission required to use Alarm Manager -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -53,7 +57,16 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".activities.SeeAllActivity" />
-        <activity android:name=".activities.StyleDetails"></activity>
+        <activity android:name=".activities.StyleDetails" />
+        <activity android:name=".activities.BookingActivityDetails" />
+
+        <service android:name=".utilities.ScheduleService" />
+        <service android:name=".utilities.NotifyService" />
+        <service android:name=".utilities.MyAlarmService" />
+
+        <receiver android:name=".utilities.AlarmReciever" />
+
+        <activity android:name=".activities.FavouritesList"></activity>
     </application>
 
 </manifest>

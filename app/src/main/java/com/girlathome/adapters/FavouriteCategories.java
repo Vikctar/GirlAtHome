@@ -1,9 +1,8 @@
 package com.girlathome.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.girlathome.R;
-import com.girlathome.models.BookingModel;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.girlathome.activities.FavouritesList;
 
 import java.util.List;
 
@@ -20,20 +18,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by steve on 6/2/17.
+ * Created by steve on 6/12/17.
  */
-public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.ViewHolder> {
+public class FavouriteCategories extends RecyclerView.Adapter<FavouriteCategories.ViewHolder> {
 
-    private static final String TAG = BookingsAdapter.class.getSimpleName();
+    private static final String TAG = FavouriteCategories.class.getSimpleName();
 
     private Context mContext;
-    private List<BookingModel> mData;
-    private DisplayImageOptions options;
+    private List<String> mData;
 
     /**
      * Change {@link List} type according to your needs
      */
-    public BookingsAdapter(Context context, List<BookingModel> data) {
+    public FavouriteCategories(Context context, List<String> data) {
         if (context == null) {
             throw new NullPointerException("context can not be NULL");
         }
@@ -44,15 +41,6 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.ViewHo
 
         this.mContext = context;
         this.mData = data;
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.image_placeholder)
-                .showImageForEmptyUri(R.drawable.image_placeholder)
-                .showImageOnFail(R.drawable.image_placeholder)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .considerExifParams(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
     }
 
 
@@ -62,7 +50,7 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.bookings_row, parent, false);
+                .inflate(R.layout.favourites_categorized_row, parent, false);
 
         return new ViewHolder(view);
     }
@@ -71,11 +59,18 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // include binding logic here
-        final BookingModel bookingModel = mData.get(position);
-        Log.d("bookings_adapter", "--"+bookingModel.getName());
-        //holder.tvName.setText(bookingModel.getDate());
-        holder.tvName.setText(bookingModel.getName());
+        holder.tvCount.setText(mData.get(position));
+        holder.avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(mContext, FavouritesList.class);
+                i.putExtra("category_variant", "styles");
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(i);
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
@@ -85,14 +80,10 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // include {@link View} components here
+        @BindView(R.id.count_of_favs)
+        TextView tvCount;
         @BindView(R.id.avatar)
-        ImageView avatarImageView;
-        /*@BindView(R.id.wishlist_icon)
-        ImageView wishListImageView;*/
-        @BindView(R.id.name)
-        TextView tvName;
-        @BindView(R.id.time_left)
-        TextView tvTimeLeft;
+        ImageView avatar;
 
         public ViewHolder(View itemView) {
             super(itemView);

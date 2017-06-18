@@ -40,8 +40,6 @@ public class BookingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-
     }
 
     public void setUpTitle(String title) {
@@ -80,7 +78,7 @@ public class BookingActivity extends AppCompatActivity {
         } else if (fragments == 4) {
             setUpTitle(getString(R.string.payment));
         } else if (fragments == 5) {
-            setUpTitle(getString(R.string.add_images));
+           finish();
         }
         Log.d("no_of_frga", fragments + "");
         super.onBackPressed();

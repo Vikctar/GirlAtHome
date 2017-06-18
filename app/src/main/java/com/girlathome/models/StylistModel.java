@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class StylistModel
         implements Serializable {
+    private int id;
     private String phone_number;
 
     private String status;
@@ -37,6 +38,8 @@ public class StylistModel
     private String name;
 
     private String created_at;
+    private String date;
+    private String time;
 
     public StylistModel(String name) {
         this.name = name;
@@ -165,5 +168,18 @@ public class StylistModel
 
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

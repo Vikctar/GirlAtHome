@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.girlathome.R;
 import com.girlathome.utilities.AccountSharedPreferences;
@@ -140,6 +139,13 @@ public class MainActivity extends AppCompatActivity
         //fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
+    }
+
+    public void showMyBookingsFragment() {
+     /*Intent intent = new Intent(getActivity(), Login.class);
+        intent.putExtra("loginOut", message);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);*/
     }
 
     @Override

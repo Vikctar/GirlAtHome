@@ -58,39 +58,50 @@ public class PMTimeAdapter extends BaseAdapter {
             convertView.setTag(holder);
         } else {
             holder = (PMTimeAdapter.ViewHolder) convertView.getTag();
-        }
 
+        }
         holder.text.setText(mData.get(position));
-//if its today
+        //style the time
+        //if its today
         if (dateSelected.equalsIgnoreCase(getDate())) {
-//        disable previous hours if we're in the afternoon
+            Log.d("date_selected", "today");
+            //disable previous hours if we're in the afternoon
             if (daytime_variant.equalsIgnoreCase("pm")) {
-                if (Integer.valueOf(hour_variant) >= Integer.valueOf(mData.get(position))) {
-//            means current time is past the current value
+                Log.d("date_selected", "today" + daytime_variant);
+                if (Integer.valueOf(mData.get(position)) <= Integer.valueOf(hour_variant)) { //disable previous dates
+                    Log.d("date_selected_1", "this");
                     holder.text.setTextColor(mActivity.getResources().getColor(R.color.grey_2));
+
                 } else {
                     if (Integer.valueOf(mData.get(position)) == 12) {
+                        Log.d("date_selected_3", "== 12");
                         holder.text.setTextColor(mActivity.getResources().getColor(R.color.grey_2));
                     } else {
                         holder.text.setTextColor(mActivity.getResources().getColor(R.color.darkAccent));
-                        //set listener for enabled hours
                         holder.text.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Log.d("is_it_time", "Clicked " + mData.get(position) + daytime_variant);
-                                mListener.onPMClick(position, mData.get(position), daytime_variant);
+                                mListener.onPMClick(position, mData.get(position), "pm");
                             }
                         });
                     }
+
                 }
 
+
+            } else {
+                holder.text.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mListener.onPMClick(position, mData.get(position), "pm");
+                    }
+                });
             }
         } else {
             holder.text.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mListener.onPMClick(position, mData.get(position), daytime_variant);
-//                            Toast.makeText(mActivity, "Clicked " + mData.get(position) + " " + daytime_variant, Toast.LENGTH_LONG).show();
+                    mListener.onPMClick(position, mData.get(position), "pm");
                 }
             });
         }

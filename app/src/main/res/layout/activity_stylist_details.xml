@@ -76,9 +76,8 @@
         android:layout_gravity="bottom"
         android:background="@drawable/apply_button_shape"
         android:text="@string/book_me"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="15sp"
         android:textStyle="bold" />
 
     <FrameLayout

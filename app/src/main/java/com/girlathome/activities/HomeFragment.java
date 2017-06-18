@@ -1,7 +1,9 @@
 package com.girlathome.activities;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +22,9 @@ import com.girlathome.models.CategoriesModel;
 import com.girlathome.models.ServiceModel;
 import com.girlathome.models.StylistModel;
 import com.girlathome.utilities.AccountSharedPreferences;
+import com.girlathome.utilities.ConnectivityUtility;
+import com.girlathome.utilities.ScheduleClient;
+import com.girlathome.utilities.ScheduleService;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -44,6 +49,7 @@ public class HomeFragment extends Fragment {
     private static final String TAG = HomeFragment.class.getSimpleName();
     Activity parentActivity;
     AccountSharedPreferences asp;
+    ConnectivityUtility cu;
     @BindView(R.id.progress)
     MKLoader mkLoader;
     @BindView(R.id.just_booked_recyclerview)
@@ -60,6 +66,10 @@ public class HomeFragment extends Fragment {
     List<StylistModel> stylistModelList = new ArrayList<>();
     List<ServiceModel> serviceModelList = new ArrayList<>();
     List<CategoriesModel> categoriesData = new ArrayList<>();
+    ServiceConnection serviceConnection;
+    private ScheduleService mBoundService;
+    private ScheduleClient scheduleClient;// This is a handle so that we can call methods on our service
+    private PendingIntent pendingIntent;
 
     public HomeFragment() {
     }
@@ -88,9 +98,10 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.home_fragment, container, false);
         ButterKnife.bind(this, rootView);
         asp = new AccountSharedPreferences(parentActivity);
-        homeDataRequest("all_stylists");
+        cu = new ConnectivityUtility();
         return rootView;
     }
+
 
     private void homeDataRequest(String data_variant) {
         final int DEFAULT_TIMEOUT = 20 * 10000;
@@ -99,6 +110,7 @@ public class HomeFragment extends Fragment {
         RequestParams params = new RequestParams();
         client.get(getResources().getString(R.string.base_url) + data_variant, params, new AsyncHttpResponseHandler() {
             @Override
+
             public void onStart() {
                 Log.d("backgrnd_req", "started");
                 if (hasList) {
@@ -162,6 +174,7 @@ public class HomeFragment extends Fragment {
                 serviceModelList.add(serviceModel);
             }
 
+            categoriesData.add(new CategoriesModel(R.drawable.ic_categories, "All Categories"));
             categoriesData.add(new CategoriesModel(R.drawable.image_placeholder, "Relaxed Hair"));
             categoriesData.add(new CategoriesModel(R.drawable.image_placeholder, "Hair Cuts"));
             categoriesData.add(new CategoriesModel(R.drawable.image_placeholder, "Lines"));
@@ -175,6 +188,7 @@ public class HomeFragment extends Fragment {
 
 
             setUpAdapter();
+            displayContent();
         } catch (JSONException e) {
             e.printStackTrace();
             Log.d("locatiion_req", e.toString());
@@ -219,6 +233,7 @@ public class HomeFragment extends Fragment {
 
     @OnClick(R.id.fab)
     void open() {
+
         if (asp.getCounty().equals("")) {
             startActivity(new Intent(parentActivity, LocationActivity.class));
         } else {
@@ -236,13 +251,29 @@ public class HomeFragment extends Fragment {
     public void onStart() {
         Log.d(TAG, "onStart: hit");
         super.onStart();
+        displayContent();
+        parseHomeDataRequest(asp.getHomeData());
+        if (cu.isOnline()) {
+            //update data in background
+            homeDataRequest("all_stylists");
+        } else {//not connected to internet
+            // TODO: 6/3/17  display empty-ness/needs internet connection
+            //display empty-ness
+        }
+        // Create a new service client and bind our activity to this service
+        scheduleClient = new ScheduleClient(getContext());
+        scheduleClient.doBindService();
+
+    }
+
+    private void displayContent() {
+        //check if there is existent data
         if (asp.getHomeData().length() > 1) {
             hasList = true;
             bodyContent.setVisibility(View.VISIBLE);
-            parseHomeDataRequest(asp.getHomeData());
         } else {
-            bodyContent.setVisibility(View.INVISIBLE);
             hasList = false;
+            bodyContent.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -266,6 +297,14 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
     }
 
+    @Override
+    public void onStop() {
+        // When our activity is stopped ensure we also stop the connection to the service
+        // this stops us leaking our activity into the system *bad*
+        if (scheduleClient != null)
+            scheduleClient.doUnbindService();
+        super.onStop();
+    }
 
     @Override
     public void onDestroy() {

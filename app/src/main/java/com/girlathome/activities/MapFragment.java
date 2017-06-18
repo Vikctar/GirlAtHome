@@ -54,7 +54,7 @@ public class MapFragment extends Fragment {
     //    cancel
     @OnClick(R.id.cancel)
     void closeFragment() {
-        ((StylistDetails) parentActivity).createFragments(new EmptyFragment());
+        ((StylistDetails) parentActivity).createFragments(new EmptyFragment(), "empty");
     }
 
     @Override

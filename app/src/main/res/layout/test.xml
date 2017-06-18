@@ -1,106 +1,18 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="@dimen/navigation_drawer_width"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:clickable="true">
 
-    <ScrollView
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/sub_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="@string/booking_successful_details"
+        android:textColor="@color/grey_2"
+        android:textSize="15sp"
+        app:typeface="Nirmala.ttf" />
 
-        <RelativeLayout
-            android:layout_width="@dimen/navigation_drawer_width"
-            android:layout_height="wrap_content">
-            <!--header bg-->
-            <ImageView
-                android:layout_width="@dimen/navigation_drawer_width"
-                android:layout_height="150dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/header_bg_4" />
-            <!--sign up button-->
-            <Button
-                android:id="@+id/sign_join"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="45dp"
-                android:background="@drawable/style_button_shape"
-                android:paddingLeft="13dp"
-                android:paddingRight="13dp"
-                android:text="@string/sign_join"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-            <!--profile image-->
-            <com.pkmmte.view.CircularImageView
-                android:id="@+id/prof_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="105dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_person"
-                app:border="true"
-                app:border_color="@color/grey_lighter"
-                app:border_width="4dp" />
-
-            <LinearLayout
-                android:id="@+id/name_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="14dp"
-                android:layout_marginTop="105dp"
-                android:layout_toRightOf="@+id/prof_image"
-                android:orientation="vertical"
-                android:visibility="visible">
-                <!--profile name-->
-                <com.ctrlplusz.anytextview.AnyTextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:text="Steve Kamau"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"
-                    app:typeface="Centurygothic.ttf" />
-                <!--email-->
-                <com.ctrlplusz.anytextview.AnyTextView
-                    android:id="@+id/email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="5dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:text="steve72@gmail.com"
-                    android:textColor="@color/colorPrimaryLight"
-                    android:textSize="11sp"
-                    app:typeface="Centurygothic.ttf" />
-            </LinearLayout>
-
-            <!--menu-->
-            <RelativeLayout
-                android:layout_width="@dimen/navigation_drawer_width"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/prof_image">
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/drawerList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginBottom="15dp"
-                    android:clickable="true"
-                    android:scrollbars="vertical" />
-
-            </RelativeLayout>
-        </RelativeLayout>
-    </ScrollView>
-
-
-</RelativeLayout>
+</LinearLayout>
 

@@ -58,7 +58,7 @@ public class AMTimeAdapter extends BaseAdapter {
         }
 
         holder.text.setText(mData.get(position));
-        Log.d("selected_time", dateSelected + "=" + getDate());
+        Log.d("selected_time_am", dateSelected + "=" + daytime_variant);
         //if its today
         if (dateSelected.equalsIgnoreCase(getDate())) {
             //check what time of day we are at
@@ -75,7 +75,7 @@ public class AMTimeAdapter extends BaseAdapter {
                         holder.text.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                mListener.onAMClick(position, mData.get(position), daytime_variant);
+                                mListener.onAMClick(position, mData.get(position), "AM");
 //                            Toast.makeText(mActivity, "Clicked " + mData.get(position) + " " + daytime_variant, Toast.LENGTH_LONG).show();
                             }
                         });
@@ -88,7 +88,7 @@ public class AMTimeAdapter extends BaseAdapter {
             holder.text.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mListener.onAMClick(position, mData.get(position), daytime_variant);
+                    mListener.onAMClick(position, mData.get(position), "AM");
 //                            Toast.makeText(mActivity, "Clicked " + mData.get(position) + " " + daytime_variant, Toast.LENGTH_LONG).show();
                 }
             });
